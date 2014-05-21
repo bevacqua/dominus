@@ -1,37 +1,34 @@
-# insert-rule
+# domu
 
-> Insert rules into a stylesheet programatically with a simple API
+> Lean DOM Manipulation
 
 # Install
 
 Using Bower
 
 ```shell
-bower install -S insert-rule
+bower install -S domu
 ```
 
 Using `npm`
 
 ```shell
-npm install -S insert-rule
+npm install -S domu
 ```
 
-# `insertRule(selector, styles)`
+# `domu(elem?, selector)`
 
-Applies the styles to the selector. The selector can be any CSS selector. That includes `:after` and `:before`, too. Styles can either be plain text or an object. Keys in `camelCase` get converted into `css-case`.
+Queries the DOM for the provided selector. If `elem` is provided then the search is restricted to children of `elem`. Otherwise `document` is used. Plain DOM elements returned. No fancy wrappers are used.
+
+# `domu.one(elem?, selector)`
+
+Queries the DOM for the provided selector. If `elem` is provided then the search is restricted to children of `elem`. Otherwise `document` is used. A single DOM element is returned. No fancy wrappers are used.
 
 ##### Example
 
 ```js
-insertRule('body:after', 'font-weight: bold;');
-```
-
-```js
-insertRule('body:after', {
-  content: 'Ha-ha!',
-  display: 'block',
-  fontSize: '16px'
-});
+domu('body');
+// <- document.body
 ```
 
 # License
