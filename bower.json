@@ -1,0 +1,26 @@
+{
+  "name": "domu",
+  "description": "Lean DOM Manipulation",
+  "version": "1.0.1",
+  "homepage": "https://github.com/bevacqua/domu",
+  "author": {
+    "name": "Nicolas Bevacqua",
+    "email": "ng@bevacqua.io",
+    "url": "http://bevacqua.io"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bevacqua/domu.git"
+  },
+  "main": "dist/domu.js",
+  "ignore": [
+    ".*",
+    "package.json",
+    "node_modules",
+    "src",
+    "test",
+    "gulpfile.js"
+  ],
+  "dependencies": {}
+}
