@@ -1,8 +1,8 @@
 {
-  "name": "domu",
+  "name": "dominus",
   "description": "Lean DOM Manipulation",
   "version": "1.0.1",
-  "homepage": "https://github.com/bevacqua/domu",
+  "homepage": "https://github.com/bevacqua/dominus",
   "author": {
     "name": "Nicolas Bevacqua",
     "email": "ng@bevacqua.io",
@@ -11,9 +11,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/bevacqua/domu.git"
+    "url": "git://github.com/bevacqua/dominus.git"
   },
-  "main": "src/domu.js",
+  "main": "src/dominus.js",
   "devDependencies": {
     "browserify": "^4.1.3",
     "gulp": "^3.6.2",

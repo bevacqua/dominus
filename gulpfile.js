@@ -36,12 +36,12 @@ gulp.task('clean', function () {
 gulp.task('build', ['clean', 'bump'], function () {
   var pkg = require('./package.json');
 
-  return browserify('./src/domu.js')
-    .bundle({ debug: true, standalone: 'domu' })
-    .pipe(source('domu.js'))
+  return browserify('./src/dominus.js')
+    .bundle({ debug: true, standalone: 'dominus' })
+    .pipe(source('dominus.js'))
     .pipe(streamify(header(extended, { pkg : pkg } )))
     .pipe(gulp.dest('./dist'))
-    .pipe(streamify(rename('domu.min.js')))
+    .pipe(streamify(rename('dominus.min.js')))
     .pipe(streamify(uglify()))
     .pipe(streamify(header(succjs, { pkg : pkg } )))
     .pipe(streamify(size()))
