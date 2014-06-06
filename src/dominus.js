@@ -1,32 +1,51 @@
 'use strict';
 
+var d = global.document;
 var flatten = require('flatten');
+var a = require('./a');
 var atoa = require('./atoa');
 
 function qs (selector, context) {
-  var result = (context || document).querySelector(selector);
+  var result = (context || d).querySelector(selector);
   return wrap(result);
 }
 
 function qsa (selector, context) {
-  var result = (context || document).querySelectorAll(selector);
-  return wrapa(atoa(result).map(wrap));
+  var result = (context || d).querySelectorAll(selector);
+  return wrap(atoa(result).map(wrap));
 }
 
 function wrap (n) {
+  var b = a(n);
+  var s = b ? n[0] : n;
+  var m = b ? n : [n];
+
   n.find = function (selector) {
+    if (b) {
+      return many(n, 'find', [selector, n]);
+    }
     return qsa(selector, n);
+  };
+  n.html = function (value) {
+    if (arguments.length === 0) {
+      return s.innerHTML;
+    } else {
+      s.innerHTML = value;
+    }
+  };
+  n.on = function (type, fn) {
+    m.forEach(function (i) {
+      i.addEventListener(type, fn);
+    });
+    return n;
   };
   return n;
 }
 
-function wrapa (n) {
-  n.find = function (selector) {
-    return wrapa(flatten(n.map(function flatmap (i) {
-      return qsa(selector, i);
-    })));
-  };
-  return n;
+function many (n, fn, args) {
+  return wrap(flatten(n.map(function (i) {
+    return i[fn].apply(i, args);
+  })));
 }
 
 var $ = qsa;
@@ -34,11 +53,3 @@ var $ = qsa;
 $.one = qs;
 
 module.exports = $;
-/*
-
-    Node.prototype.on = Node.prototype.addEventListener;
-    Node.prototype.remove = function () { this.parentNode.removeChild(this); };
-    Node.prototype.txt = function (v) { if (v === void 0) { return this.innerText; } this.innerText = v; }
-    Node.prototype.html = function (v) { if (v === void 0) { return this.innerHTML; } this.innerHTML = v; }
-    Node.prototype.attr = function (n, v) { if (v === void 0) { return this.getAttribute(n); } this.setAttribute(n, v); }
-*/
