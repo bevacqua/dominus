@@ -1,16 +1,37 @@
 'use strict';
 
-var $ = qs('querySelectorAll');
-$.one = qs('querySelector');
+var flatten = require('flatten');
+var atoa = require('./atoa');
 
-function qs (query) {
-  return function queryHandler (elem, selector) {
-    if (selector === void 0) {
-      selector = elem; elem = void 0;
-    }
-    return (elem || document)[query](selector);
-  }
+function qs (selector, context) {
+  var result = (context || document).querySelector(selector);
+  return wrap(result);
 }
+
+function qsa (selector, context) {
+  var result = (context || document).querySelectorAll(selector);
+  return wrapa(atoa(result).map(wrap));
+}
+
+function wrap (n) {
+  n.find = function (selector) {
+    return qsa(selector, n);
+  };
+  return n;
+}
+
+function wrapa (n) {
+  n.find = function (selector) {
+    return wrapa(flatten(n.map(function flatmap (i) {
+      return qsa(selector, i);
+    })));
+  };
+  return n;
+}
+
+var $ = qsa;
+
+$.one = qs;
 
 module.exports = $;
 /*

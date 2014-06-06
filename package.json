@@ -28,5 +28,8 @@
     "gulp-stylus": "^1.0.0",
     "gulp-uglify": "^0.3.0",
     "vinyl-source-stream": "^0.1.1"
+  },
+  "dependencies": {
+    "flatten": "0.0.1"
   }
 }
