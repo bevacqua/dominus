@@ -30,6 +30,6 @@
     "vinyl-source-stream": "^0.1.1"
   },
   "dependencies": {
-    "flatten": "0.0.1"
+    "poser": "^1.1.0"
   }
 }
