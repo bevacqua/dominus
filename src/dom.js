@@ -1,5 +1,6 @@
 'use strict';
 
+var sizzle = require('sizzle');
 var core = require('./core');
 
 function on (elem, type, fn) {
@@ -16,7 +17,7 @@ function html (elem, value) {
 
 function qsa (elem, selector) {
   var results = new core.Dominus();
-  return Sizzle(selector, elem, results);
+  return sizzle(selector, elem, results);
 }
 
 function qs (elem, selector) {
