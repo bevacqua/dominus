@@ -1,16 +1,24 @@
 'use strict';
 
+var test = require('./test');
 var Dominus = require('./Dominus.ctor');
 
 function cast (a) {
-  var result;
-
   if (a instanceof Dominus) {
     return a;
   }
-  result = new Dominus();
-  result.push.apply(result, a);
-  return result;
+  if (!a) {
+    return new Dominus();
+  }
+  if (test.isElement(a)) {
+    return new Dominus(a);
+  }
+  if (!test.isArray(a)) {
+    return new Dominus();
+  }
+  return Dominus.prototype.filter.call(a, function (i) {
+    return test.isElement(i);
+  });
 }
 
 function flatten (a, d) {
