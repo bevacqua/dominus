@@ -2,7 +2,7 @@
 
 var core = require('./core');
 var dom = require('./dom');
-var Dominus = core.Dominus;
+var Dominus = require('./Dominus.ctor');
 
 Dominus.prototype.on = function (type, fn) {
   this.forEach(function (elem) {

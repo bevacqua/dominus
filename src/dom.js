@@ -1,7 +1,7 @@
 'use strict';
 
 var sizzle = require('sizzle');
-var core = require('./core');
+var Dominus = require('./Dominus.ctor');
 
 function on (elem, type, fn) {
   elem.addEventListener(type, fn);
@@ -16,7 +16,7 @@ function html (elem, value) {
 }
 
 function qsa (elem, selector) {
-  var results = new core.Dominus();
+  var results = new Dominus();
   return sizzle(selector, elem, results);
 }
 

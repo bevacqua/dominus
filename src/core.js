@@ -1,9 +1,6 @@
 'use strict';
 
-var poser = require('poser');
-var Dominus = poser.Array();
-
-function dns () { return new Dominus(); }
+var Dominus = require('./Dominus.ctor');
 
 function cast (a) {
   var result;
@@ -11,7 +8,7 @@ function cast (a) {
   if (a instanceof Dominus) {
     return a;
   }
-  result = dns();
+  result = new Dominus();
   result.push.apply(result, a);
   return result;
 }
@@ -24,7 +21,7 @@ function flatten (a, d) {
     } else {
       return current.concat(item);
     }
-  }, dns());
+  }, new Dominus());
 }
 
 function flat (fn) {
@@ -34,7 +31,6 @@ function flat (fn) {
 }
 
 module.exports = {
-  Dominus: Dominus,
   cast: cast,
   flat: flat
 };
