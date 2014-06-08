@@ -28,19 +28,19 @@ These are the static methods provided by Dominus. Consider these _the entry poin
 
 ### `dominus()`
 
-Returns an empty `Dominus` array.
+Returns an empty `Dominus` collection.
 
 ### `dominus(HTMLElement)`
 
-Wraps the [`HTMLElement`][2] object in a `Dominus` array.
+Wraps the [`HTMLElement`][2] object in a `Dominus` collection.
 
 ### `dominus(Dominus)`
 
-Returns the `Dominus` array, as-is.
+Returns the `Dominus` collection, as-is.
 
 ### `dominus(Array)`
 
-Returns a `Dominus` array with the [`HTMLElement`][2] objects found in the provided array.
+Returns a `Dominus` collection with the [`HTMLElement`][2] objects found in the provided array.
 
 ### `dominus(selector, context?)`
 
@@ -48,7 +48,7 @@ See `dominus.find` below.
 
 ### `dominus.find(selector, context?)`
 
-Queries the DOM for the provided selector, using [Sizzle][1]. Returns a `Dominus` array with [`HTMLElement`][2] objects. If `context` is provided then the search is restricted to children of `context`.
+Queries the DOM for the provided selector, using [Sizzle][1]. Returns a `Dominus` collection with [`HTMLElement`][2] objects. If `context` is provided then the search is restricted to children of `context`.
 
 ### `dominus.findOne(selector, context?)`
 
@@ -56,23 +56,23 @@ Queries the DOM for the provided selector, using [Sizzle][1]. Returns the first 
 
 ## Instance Methods
 
-Once you've gotten yourself a `Dominus` array, there's a few more methods you'll get access to. I'll denote array instances as `a`, where possible.
+Once you've gotten yourself a `Dominus` collection, there's a few more methods you'll get access to. I'll denote array instances as `a`, where possible.
 
 ### `a.find(selector)`
 
-Queries the DOM for children of the elements in the array, using the provided selector. Returns a single `Dominus` array containing all of the results.
+Queries the DOM for children of the elements in the array, using the provided selector. Returns a single `Dominus` collection containing all of the results.
 
 ### `a.findOne(selector)`
 
 Queries the DOM for children of the elements in the array, using the provided selector. Returns the first matching [`HTMLElement`][2] object, if any.
 
+### `a.html(value?)`
 
-TODO: list all methods
+If a `value` is provided then every element in the `Dominus` collection gets assigned that HTML `value`, then `a` is returned for chaining. If you don't provide a `value`, then you get the HTML contents of the first node in the `Dominus` collection.
 
-...
+### `a.on(type, fn)`
 
-
-
+Attaches the event handler `fn` for events of type `type` on every element in the `Dominus` collection.
 
 # License
 
