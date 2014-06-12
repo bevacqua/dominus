@@ -18,7 +18,7 @@ Dominus.prototype.findOne = function (selector) {
 
 Dominus.prototype.on = function (types, fn) {
   this.forEach(function (elem) {
-    types.forEach(function (type) {
+    types.split(' ').forEach(function (type) {
       dom.on(elem, type, fn);
     });
   });
