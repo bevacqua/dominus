@@ -68,11 +68,19 @@ Queries the DOM for children of the elements in the array, using the provided se
 
 ### `a.html(value?)`
 
-If a `value` is provided then every element in the `Dominus` collection gets assigned that HTML `value`, then `a` is returned for chaining. If you don't provide a `value`, then you get the HTML contents of the first node in the `Dominus` collection.
+If a `value` is provided then every element in the `Dominus` collection gets assigned that HTML `value`, then `a` is returned for chaining. If you don't provide a `value`, you get the HTML contents of the first node in the `Dominus` collection back.
+
+### `a.text(value?)`
+
+If a `value` is provided then every element in the `Dominus` collection gets assigned that plain text `value`, then `a` is returned for chaining. If you don't provide a `value`, you get the plain text contents of the first node in the `Dominus` collection back.
+
+### `a.value(value?)`
+
+If a `value` is provided then every element in the `Dominus` collection gets assigned that input `value`, then `a` is returned for chaining. If you don't provide a `value`, you get the input value of the first node in the `Dominus` collection back.
 
 ### `a.on(type, fn)`
 
-Attaches the event handler `fn` for events of type `type` on every element in the `Dominus` collection.
+Attaches the event handler `fn` for events of type `type` on every element in the `Dominus` collection. You can also pass in a list of event types, such as `click dragstart`, and both events would get an event listener.
 
 # License
 

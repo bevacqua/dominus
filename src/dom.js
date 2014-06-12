@@ -2,31 +2,31 @@
 
 var sizzle = require('sizzle');
 var Dominus = require('./Dominus.ctor');
+var api = module.exports = {};
 
-function on (elem, type, fn) {
+api.qsa = function (elem, selector) {
+  var results = new Dominus();
+  return sizzle(selector, elem, results);
+};
+
+api.qs = function (elem, selector) {
+  return qsa(elem, selector)[0];
+};
+
+api.on = function (elem, type, fn) {
   elem.addEventListener(type, fn);
-}
+};
 
-function html (elem, value) {
-  if (arguments.length === 1) {
-    return elem.innerHTML;
+function getSet (key, elem, value) {
+  if (value === void 0) {
+    return elem[key];
   } else {
-    elem.innerHTML = value;
+    elem[key] = value;
   }
 }
 
-function qsa (elem, selector) {
-  var results = new Dominus();
-  return sizzle(selector, elem, results);
+function getSetProperty (prop) {
+  api[prop] = getSet.bind(null, prop);
 }
 
-function qs (elem, selector) {
-  return qsa(elem, selector)[0];
-}
-
-module.exports = {
-  on: on,
-  html: html,
-  qsa: qsa,
-  qs: qs
-};
+['html', 'text', 'value'].forEach(getSetProperty);
