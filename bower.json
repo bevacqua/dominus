@@ -1,7 +1,7 @@
 {
   "name": "domu",
   "description": "Lean DOM Manipulation",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "homepage": "https://github.com/bevacqua/domu",
   "author": {
     "name": "Nicolas Bevacqua",
