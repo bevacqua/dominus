@@ -8,7 +8,7 @@ function api (selector, context) {
     return core.cast(selector);
   }
   return api.find(selector, context);
-};
+}
 
 api.find = function (selector, context) {
   return dom.qsa(context, selector);

@@ -10,7 +10,7 @@ api.qsa = function (elem, selector) {
 };
 
 api.qs = function (elem, selector) {
-  return qsa(elem, selector)[0];
+  return api.qsa(elem, selector)[0];
 };
 
 api.on = function (elem, type, fn) {

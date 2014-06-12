@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var core = require('./core');
 var dom = require('./dom');
