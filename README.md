@@ -78,9 +78,13 @@ If a `value` is provided then every element in the `Dominus` collection gets ass
 
 If a `value` is provided then every element in the `Dominus` collection gets assigned that input `value`, then `a` is returned for chaining. If you don't provide a `value`, you get the input value of the first node in the `Dominus` collection back.
 
-### `a.on(type, fn)`
+### `a.on(type, fn, options?)`
 
 Attaches the event handler `fn` for events of type `type` on every element in the `Dominus` collection. You can also pass in a list of event types, such as `click dragstart`, and both events would get an event listener.
+
+Option   | Description
+---------|--------------
+Debounce | Uses a `setTimeout` to execute your callback in the next tick. Useful when dealing with input changes
 
 # License
 

@@ -16,10 +16,14 @@ Dominus.prototype.findOne = function (selector) {
   })[0];
 };
 
-Dominus.prototype.on = function (types, fn) {
+Dominus.prototype.on = function (types, fn, options) {
+  var o = options || {};
+  var cb = o.debounce ? function () {
+    setTimeout(fn, 0);
+  } : fn;
   this.forEach(function (elem) {
     types.split(' ').forEach(function (type) {
-      dom.on(elem, type, fn);
+      dom.on(elem, type, cb);
     });
   });
   return this;
