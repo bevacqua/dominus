@@ -25,8 +25,8 @@ function getSet (key, elem, value) {
   }
 }
 
-function getSetProperty (prop) {
-  api[prop] = getSet.bind(null, prop);
+function getSetProperty (kvp) {
+  api[kvp[0]] = getSet.bind(null, kvp[1]);
 }
 
-['html', 'text', 'value'].forEach(getSetProperty);
+[['html', 'innerHTML'], ['text', 'innerText'], ['value', 'value']].forEach(getSetProperty);
