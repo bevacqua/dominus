@@ -1,3 +1,7 @@
+# v1.1.5
+
+- Reverted `v1.1.4`
+
 # v1.1.4
 
 - Added `debounce` option to `.on`
