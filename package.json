@@ -31,6 +31,6 @@
   },
   "dependencies": {
     "poser": "^1.1.0",
-    "sizzle": "git+https://github.com/bevacqua/sizzle.git#patch-1"
+    "sizzle": "^2.0.0"
   }
 }
