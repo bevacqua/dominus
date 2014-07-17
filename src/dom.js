@@ -17,16 +17,26 @@ api.on = function (elem, type, fn) {
   elem.addEventListener(type, fn);
 };
 
-function getSet (key, elem, value) {
-  if (value === void 0) {
-    return elem[key];
+api.html = function (elem, html) {
+  if (html === void 0) {
+    return elem.innerHTML;
   } else {
-    elem[key] = value;
+    elem.innerHTML = html;
   }
-}
+};
 
-function getSetProperty (kvp) {
-  api[kvp[0]] = getSet.bind(null, kvp[1]);
-}
+api.text = function (elem, text) {
+  if (text === void 0) {
+    return elem.innerText || elem.textContent;
+  } else {
+    elem.innerText = elem.textContent = text;
+  }
+};
 
-[['html', 'innerHTML'], ['text', 'innerText'], ['value', 'value']].forEach(getSetProperty);
+api.value = function (elem, value) {
+  if (value === void 0) {
+    return elem.value;
+  } else {
+    elem.value = value;
+  }
+};
