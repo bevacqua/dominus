@@ -1,3 +1,8 @@
+# v1.1.7
+
+- `.text` now sets or gets the value text found on check elements if asked directly
+- `.value` now sets or gets the boolean checked property for check elements
+
 # v1.1.5
 
 - Reverted `v1.1.4`
