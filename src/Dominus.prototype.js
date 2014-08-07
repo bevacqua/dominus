@@ -25,6 +25,12 @@ Dominus.prototype.on = function (types, fn) {
   return this;
 };
 
+Dominus.prototype.attr = function (name, value) {
+  return core.flat.call(this, function (elem) {
+    return dom.attr(elem, name, value);
+  });
+};
+
 function keyValue (key, value) {
   if (value === void 0) {
     return this.length ? dom[key](this[0]) : '';

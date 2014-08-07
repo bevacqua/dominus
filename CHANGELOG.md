@@ -1,5 +1,7 @@
-# v1.1.7
+# v1.2.0
 
+- Events now have cross-browser support
+- Introduced `.attr` method
 - `.text` now sets or gets the value text found on check elements if asked directly
 - `.value` now sets or gets the boolean checked property for check elements
 

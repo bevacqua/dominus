@@ -72,11 +72,15 @@ If a `value` is provided then every element in the `Dominus` collection gets ass
 
 ### `a.text(value?)`
 
-If a `value` is provided then every element in the `Dominus` collection gets assigned that plain text `value`, then `a` is returned for chaining. If you don't provide a `value`, you get the plain text contents of the first node in the `Dominus` collection back.
+If a `value` is provided then every element in the `Dominus` collection gets assigned that plain text `value`, then `a` is returned for chaining. If you don't provide a `value`, you get the plain text contents of the first node in the `Dominus` collection back. In the case of elements that can be `checked`, the native `value` property is used instead.
 
 ### `a.value(value?)`
 
-If a `value` is provided then every element in the `Dominus` collection gets assigned that input `value`, then `a` is returned for chaining. If you don't provide a `value`, you get the input value of the first node in the `Dominus` collection back.
+If a `value` is provided then every element in the `Dominus` collection gets assigned that input `value`, then `a` is returned for chaining. If you don't provide a `value`, you get the input value of the first node in the `Dominus` collection back. In the case of elements that can be `checked`, the native `checked` property is used instead.
+
+### `a.attr(name, value?)`
+
+If a `value` is provided then every element in the `Dominus` collection gets assigned the attribute property `value`. If a `value` isn't provided then the current attribute value is returned. If the property can be accessed via programatic API that's preferred. For instance, using `a.attr('value', 'dog')` is the same as using `a.value('dog')` for text inputs.
 
 ### `a.on(type, fn)`
 
