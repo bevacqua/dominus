@@ -15,6 +15,10 @@ api.qs = function (elem, selector) {
   return api.qsa(elem, selector)[0];
 };
 
+api.matches = function (elem, selector) {
+  return sizzle.matchesSelector(elem, selector);
+};
+
 api.on = function (elem, type, fn) {
   events.add(elem, type, fn);
 };
@@ -55,15 +59,15 @@ api.value = function (elem, value) {
 api.attr = function (elem, name, value) {
   var getter = arguments.length < 3;
   var camel = text.hyphenToCamel(name);
-  if (elem[camel] !== void 0) {
-    if (getter) {
+  if (getter) {
+    if (camel in elem) {
       return elem[camel];
     } else {
-      elem[camel] = value;
+      return elem.getAttribute(name, value);
     }
   }
-  if (getter) {
-    return elem.getAttribute(name, value);
+  if (camel in elem) {
+    elem[camel] = value;
   } else if (value === null || value === void 0) {
     elem.removeAttribute(name);
   } else {

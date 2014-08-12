@@ -1,3 +1,10 @@
+# v1.3.0
+
+- Added `.where` instance method
+- Added `.is` instance method
+- Fixed issues when passing in an array to `$()`
+- Resolved issues when using the `.attr` getter
+
 # v1.2.0
 
 - Events now have cross-browser support

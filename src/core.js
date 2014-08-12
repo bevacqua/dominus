@@ -3,6 +3,12 @@
 var test = require('./test');
 var Dominus = require('./Dominus.ctor');
 
+function Applied (args) {
+  return Dominus.apply(this, args);
+}
+
+Applied.prototype = Dominus.prototype;
+
 function cast (a) {
   if (a instanceof Dominus) {
     return a;
@@ -16,29 +22,22 @@ function cast (a) {
   if (!test.isArray(a)) {
     return new Dominus();
   }
-  return Dominus.prototype.filter.call(a, function (i) {
+  return new Applied(a).filter(function (i) {
     return test.isElement(i);
   });
 }
 
-function flatten (a, d) {
-  var depth = d || 1;
+function flatten (a) {
   return a.reduce(function (current, item) {
     if (Dominus.isArray(item)) {
-      return current.concat(flatten(item, depth + 1));
+      return current.concat(flatten(item));
     } else {
       return current.concat(item);
     }
   }, new Dominus());
 }
 
-function flat (fn) {
-  var mapped = this.map(fn);
-  var flattened = flatten(mapped);
-  return flattened;
-}
-
 module.exports = {
   cast: cast,
-  flat: flat
+  flatten: flatten
 };

@@ -66,6 +66,14 @@ Queries the DOM for children of the elements in the array, using the provided se
 
 Queries the DOM for children of the elements in the array, using the provided selector. Returns the first matching [`HTMLElement`][2] object, if any.
 
+### `a.where(selector)`
+
+Returns a subset of the elements in the array that match the provided selector.
+
+### `a.is(selector)`
+
+Returns whether at least one of the elements in the array match the provided selector.
+
 ### `a.html(value?)`
 
 If a `value` is provided then every element in the `Dominus` collection gets assigned that HTML `value`, then `a` is returned for chaining. If you don't provide a `value`, you get the HTML contents of the first node in the `Dominus` collection back.
