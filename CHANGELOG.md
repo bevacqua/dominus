@@ -1,3 +1,7 @@
+# v1.3.1
+
+- Fixed an issue where inputs would be assumed to be checkboxes
+
 # v1.3.0
 
 - Added `.where` instance method

@@ -50,7 +50,8 @@ Dominus.prototype.attr = function (name, value) {
 };
 
 function keyValue (key, value) {
-  if (value === void 0) {
+  var getter = arguments.length < 2;
+  if (getter) {
     return this.length ? dom[key](this[0]) : '';
   }
   this.forEach(function (elem) {
@@ -60,7 +61,11 @@ function keyValue (key, value) {
 }
 
 function keyValueProperty (prop) {
-  Dominus.prototype[prop] = function (value) {
+  Dominus.prototype[prop] = function accessor (value) {
+    var getter = arguments.length < 1;
+    if (getter) {
+      return keyValue.call(this, prop);
+    }
     return keyValue.call(this, prop, value);
   };
 }

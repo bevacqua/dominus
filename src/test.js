@@ -29,8 +29,13 @@ function isArray (a) {
   return Object.prototype.toString.call(a) === '[object Array]';
 }
 
+function isCheckable (elem) {
+  return 'checked' in elem && elem.type === 'radio' || elem.type === 'checkbox';
+}
+
 module.exports = {
   isNode: isNode,
   isElement: isElement,
-  isArray: isArray
+  isArray: isArray,
+  isCheckable: isCheckable
 };

@@ -4,6 +4,7 @@ var sizzle = require('sizzle');
 var Dominus = require('./Dominus.ctor');
 var events = require('./events');
 var text = require('./text');
+var test = require('./test');
 var api = module.exports = {};
 
 api.qsa = function (elem, selector) {
@@ -33,7 +34,7 @@ api.html = function (elem, html) {
 };
 
 api.text = function (elem, text) {
-  var checkable = elem.checked !== void 0;
+  var checkable = test.isCheckable(elem);
   var getter = arguments.length < 2;
   if (getter) {
     return checkable ? elem.value : elem.innerText || elem.textContent;
@@ -45,7 +46,7 @@ api.text = function (elem, text) {
 };
 
 api.value = function (elem, value) {
-  var checkable = elem.checked !== void 0;
+  var checkable = test.isCheckable(elem);
   var getter = arguments.length < 2;
   if (getter) {
     return checkable ? elem.checked : elem.value;
