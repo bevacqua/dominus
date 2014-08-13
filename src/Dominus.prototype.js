@@ -20,8 +20,8 @@ Dominus.prototype.find = function (selector) {
 Dominus.prototype.findOne = function (selector) {
   var result = this.map(function (elem) {
     return dom.qs(elem, selector);
-  })[0];
-  return core.flatten(result);
+  });
+  return core.flatten(result)[0];
 };
 
 Dominus.prototype.where = function (selector) {

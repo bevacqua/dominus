@@ -1,3 +1,7 @@
+# v1.3.2
+
+- Fixed an issue where `.findOne` would throw.
+
 # v1.3.1
 
 - Fixed an issue where inputs would be assumed to be checkboxes
