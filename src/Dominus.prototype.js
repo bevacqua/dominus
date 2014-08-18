@@ -2,6 +2,7 @@
 
 var core = require('./core');
 var dom = require('./dom');
+var classes = require('./classes');
 var Dominus = require('./Dominus.ctor');
 
 function equals (selector) {
@@ -41,6 +42,47 @@ Dominus.prototype.on = function (types, fn) {
   return this;
 };
 
+[
+  ['addClass', classes.add],
+  ['removeClass', classes.remove],
+  ['setClass', classes.set],
+  ['removeClass', classes.remove],
+  ['remove', dom.remove]
+].forEach(mapMethods);
+
+function mapMethods (data) {
+  Dominus.prototype[data[0]] = function (value) {
+    this.forEach(function (elem) {
+      data[1](elem, value);
+    });
+    return this;
+  };
+}
+
+[
+  ['append', dom.append],
+  ['appendTo', dom.appendTo],
+  ['prepend', dom.prepend],
+  ['prependTo', dom.prependTo],
+  ['before', dom.before],
+  ['beforeOf', dom.beforeOf],
+  ['after', dom.after],
+  ['afterOf', dom.afterOf]
+].forEach(mapManipulation);
+
+function mapManipulation (data) {
+  Dominus.prototype[data[0]] = function (value) {
+    data[1](this, value);
+    return this;
+  };
+}
+
+Dominus.prototype.hasClass = function (value) {
+  return this.some(function (elem) {
+    return classes.contains(elem, value);
+  });
+};
+
 Dominus.prototype.attr = function (name, value) {
   var getter = arguments.length < 2;
   var result = this.map(function (elem) {
@@ -71,5 +113,11 @@ function keyValueProperty (prop) {
 }
 
 ['html', 'text', 'value'].forEach(keyValueProperty);
+
+Dominus.prototype.clone = function () {
+  return this.map(function (elem) {
+    return dom.clone(elem);
+  });
+};
 
 module.exports = require('./public');

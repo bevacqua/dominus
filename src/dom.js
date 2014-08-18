@@ -75,3 +75,87 @@ api.attr = function (elem, name, value) {
     elem.setAttribute(name, value);
   }
 };
+
+api.make = function (type) {
+  return new Dominus(document.createElement(type));
+};
+
+api.clone = function (elem) {
+  return elem.cloneNode(true);
+};
+
+api.remove = function (elem) {
+  if (elem.parentNode) {
+    elem.parentNode.removeChild(elem);
+  }
+};
+
+api.append = function (elem, target) {
+  if (manipulationGuard(elem, target, api.append)) {
+    return;
+  }
+  elem.appendChild(target);
+};
+
+api.prepend = function (elem, target) {
+  if (manipulationGuard(elem, target, api.prepend)) {
+    return;
+  }
+  elem.insertBefore(target, elem.firstChild);
+};
+
+api.before = function (elem, target) {
+  if (manipulationGuard(elem, target, api.before)) {
+    return;
+  }
+  if (elem.parentNode) {
+    elem.parentNode.insertBefore(target, elem);
+  }
+};
+
+api.after = function (elem, target) {
+  if (manipulationGuard(elem, target, api.after)) {
+    return;
+  }
+  if (elem.parentNode) {
+    elem.parentNode.insertBefore(target, elem.nextSibling);
+  }
+};
+
+function manipulationGuard (elem, target, fn) {
+  var right = target instanceof Dominus;
+  var left = elem instanceof Dominus;
+  if (left) {
+    elem.forEach(manipulateMany);
+  } else if (right) {
+    manipulate(elem, true);
+  }
+  return left || right;
+
+  function manipulate (elem, precondition) {
+    if (right) {
+      target.forEach(function (target, j) {
+        fn(elem, cloneUnless(target, precondition && j === 0));
+      });
+    } else {
+      fn(elem, cloneUnless(target, precondition));
+    }
+  }
+
+  function manipulateMany (elem, i) {
+    manipulate(elem, i === 0);
+  }
+}
+
+function cloneUnless (target, condition) {
+  return condition ? target : api.clone(target);
+}
+
+['appendTo', 'prependTo', 'beforeOf', 'afterOf'].forEach(flip);
+
+function flip (key) {
+  var original = key.split(/[A-Z]/)[0];
+  api[key] = function (elem, target) {
+    api[original](target, elem);
+  };
+}

@@ -2,6 +2,10 @@
 
 > Lean DOM Manipulation
 
+This isn't a drop-in replacement for jQuery, but rather a different implementation. Dominus is like **jQuery minus the cruft**. Dominus uses [`Sizzle`][1] as its selector engine of choice, so you can rest assured that the best part of jQuery is also available in Dominus.
+
+Just like with jQuery, Dominus exposes a rich API that's chainable to the best of its ability. The biggest difference with jQuery at this level is that the `Dominus` wrapper is a real array. These arrays have been modified to include a few other properties in their prototype, but they don't change the native DOM array. [See `poser` for more details on that one.][3] All of this means you can `.map`, `.forEach`, `.filter`, and all of that good stuff that you're used to when dealing with JavaScript collections, and at the same time you get some extra methods just like with jQuery.
+
 # Install
 
 Using Bower
@@ -16,11 +20,9 @@ Using `npm`
 npm install -S dominus
 ```
 
-Dominus is like jQuery, minus the cruft. Dominus uses [`Sizzle`][1] as its selector engine of choice, so you rest assured that the best part of jQuery is also available from Dominus.
-
 # API
 
-Just like with jQuery, Dominus exposes a rich API that's chainable to the best of its ability. The biggest difference with jQuery at this level is that the `Dominus` wrapper is a real array. These arrays have been modified to include a few other properties in their prototype, but they don't change the native DOM array. [See `poser` for more details on that one.][3] All of this means you can `.map`, `.forEach`, `.filter`, and all of that good stuff that you're used to when dealing with JavaScript collections, and at the same time you get some extra methods just like with jQuery.
+The API in Dominus begins with the methods listed below, which allow you to grab an object instance.
 
 ## Static Methods
 
@@ -42,6 +44,10 @@ Returns the `Dominus` collection, as-is.
 
 Returns a `Dominus` collection with the [`HTMLElement`][2] objects found in the provided array.
 
+### `dominus('<{tag-name}>')`
+
+Returns a `Dominus` collection after creating an element of the provided tag type name.
+
 ### `dominus(selector, context?)`
 
 See `dominus.find` below.
@@ -57,6 +63,12 @@ Queries the DOM for the provided selector, using [Sizzle][1]. Returns the first 
 ## Instance Methods
 
 Once you've gotten yourself a `Dominus` collection, there's a few more methods you'll get access to. I'll denote array instances as `a`, where possible.
+
+_First off, there's the selection methods._
+
+## Selection API
+
+These methods let you search the DOM for the nodes that you want to manipulate.
 
 ### `a.find(selector)`
 
@@ -74,6 +86,12 @@ Returns a subset of the elements in the array that match the provided selector.
 
 Returns whether at least one of the elements in the array match the provided selector.
 
+_Then there's also the attribute manipulation API._
+
+## Attribute Methods
+
+These methods let you modify DOM element attributes or properties.
+
 ### `a.html(value?)`
 
 If a `value` is provided then every element in the `Dominus` collection gets assigned that HTML `value`, then `a` is returned for chaining. If you don't provide a `value`, you get the HTML contents of the first node in the `Dominus` collection back.
@@ -90,9 +108,69 @@ If a `value` is provided then every element in the `Dominus` collection gets ass
 
 If a `value` is provided then every element in the `Dominus` collection gets assigned the attribute property `value`. If a `value` isn't provided then the current attribute value is returned. If the property can be accessed via programatic API that's preferred. For instance, using `a.attr('value', 'dog')` is the same as using `a.value('dog')` for text inputs.
 
+### `a.addClass(value)`
+
+Adds `value` to every element in the collection. `value` can either be a space-separated class list or an array.
+
+### `a.removeClass(value)`
+
+Removes `value` from every element in the collection. `value` can either be a space-separated class list or an array.
+
+### `a.setClass(value)`
+
+Sets `value` for every element in the collection. `value` can either be a space-separated class list or an array.
+
+### `a.hasClass(value)`
+
+Returns `true` if at least one of the elements in the collection matches every class in `value`. `value` can either be a space-separated class list or an array.
+
+_You can physically alter the DOM, using the methods listed in the next category._
+
+## DOM Manipulation
+
 ### `a.on(type, fn)`
 
 Attaches the event handler `fn` for events of type `type` on every element in the `Dominus` collection. You can also pass in a list of event types, such as `click dragstart`, and both events would get an event listener.
+
+### `a.clone()`
+
+Returns a deep clone of the DOM elements in the collection.
+
+### `a.remove()`
+
+Removes the selected elements from the DOM.
+
+### `a.append(elem)`
+
+Inserts the provided `elem` as the last child of each element in the collection.
+
+### `a.appendTo(elem)`
+
+Inserts every element in the collection as the last children of the provided `elem`.
+
+### `a.prepend(elem)`
+
+Inserts the provided `elem` as the first child of each element in the collection.
+
+### `a.prependTo(elem)`
+
+Inserts every element in the collection as the first children of the provided `elem`.
+
+### `a.before(elem)`
+
+Inserts the provided `elem` as the previous sibling of each element in the collection.
+
+### `a.after(elem)`
+
+Inserts the provided `elem` as the next sibling of each element in the collection.
+
+### `a.beforeOf(elem)`
+
+Inserts every element in the collection as the previous siblings of the provided `elem`.
+
+### `a.afterOf(elem)`
+
+Inserts every element in the collection as the next siblings of the provided `elem`.
 
 # License
 

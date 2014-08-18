@@ -1,3 +1,11 @@
+# v1.4.0
+
+- Implemented `.addClass`, `.removeClass`, `.setClass`, and `.hasClass` methods
+- Introduced ability to create elements using the `$('<div>')` API
+- Added `.remove` method to remove elements from the DOM
+- Included DOM manipulation methods `.append`, `.appendTo`, `.prepend`, `.prependTo`, `.after`, `.afterOf`, `.before`, and `.beforeOf`.
+- Added `.clone` method
+
 # v1.3.2
 
 - Fixed an issue where `.findOne` would throw.
