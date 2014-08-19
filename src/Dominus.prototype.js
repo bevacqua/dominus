@@ -33,10 +33,19 @@ Dominus.prototype.is = function (selector) {
   return this.some(equals(selector));
 };
 
-Dominus.prototype.on = function (types, fn) {
+Dominus.prototype.on = function (types, filter, fn) {
   this.forEach(function (elem) {
     types.split(' ').forEach(function (type) {
-      dom.on(elem, type, fn);
+      dom.on(elem, type, filter, fn);
+    });
+  });
+  return this;
+};
+
+Dominus.prototype.off = function (types, filter, fn) {
+  this.forEach(function (elem) {
+    types.split(' ').forEach(function (type) {
+      dom.off(elem, type, filter, fn);
     });
   });
   return this;

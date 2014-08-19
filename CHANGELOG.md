@@ -1,4 +1,10 @@
-# v1.4.0
+# v1.5.0 Venture Beat
+
+- Introduced event delegation
+- Introduced event removal
+- Named releases!
+
+# v1.4.0 Right Round
 
 - Implemented `.addClass`, `.removeClass`, `.setClass`, and `.hasClass` methods
 - Introduced ability to create elements using the `$('<div>')` API
@@ -6,41 +12,41 @@
 - Included DOM manipulation methods `.append`, `.appendTo`, `.prepend`, `.prependTo`, `.after`, `.afterOf`, `.before`, and `.beforeOf`.
 - Added `.clone` method
 
-# v1.3.2
+# v1.3.2 `throw up;`
 
 - Fixed an issue where `.findOne` would throw.
 
-# v1.3.1
+# v1.3.1 Box Office
 
 - Fixed an issue where inputs would be assumed to be checkboxes
 
-# v1.3.0
+# v1.3.0 Where Is Wally?
 
 - Added `.where` instance method
 - Added `.is` instance method
 - Fixed issues when passing in an array to `$()`
 - Resolved issues when using the `.attr` getter
 
-# v1.2.0
+# v1.2.0 _cough_ IE _cough_
 
 - Events now have cross-browser support
 - Introduced `.attr` method
 - `.text` now sets or gets the value text found on check elements if asked directly
 - `.value` now sets or gets the boolean checked property for check elements
 
-# v1.1.5
+# v1.1.5 Bounty Hunter
 
 - Reverted `v1.1.4`
 
-# v1.1.4
+# v1.1.4 Bouncy Castle
 
 - Added `debounce` option to `.on`
 
-# v1.1.0
+# v1.1.0 All The Small Things
 
 - Introduced `.text`, and `.value`
 - Improved `.on` to support multi-event binding
 
-# v1.0.0
+# v1.0.0 IPO
 
 - Initial Public Release

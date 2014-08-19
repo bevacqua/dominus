@@ -1,11 +1,13 @@
 'use strict';
 
 var sizzle = require('sizzle');
+var find = require('lodash.find');
 var Dominus = require('./Dominus.ctor');
 var events = require('./events');
 var text = require('./text');
 var test = require('./test');
 var api = module.exports = {};
+var delegates = {};
 
 api.qsa = function (elem, selector) {
   var results = new Dominus();
@@ -20,8 +22,41 @@ api.matches = function (elem, selector) {
   return sizzle.matchesSelector(elem, selector);
 };
 
-api.on = function (elem, type, fn) {
-  events.add(elem, type, fn);
+// this method caches delegates so that .off() works seamlessly
+function delegate (filter, fn) {
+  if (!delegates[filter]) {
+    delegates[filter] = [];
+  }
+  var cached = find(delegates[filter], { fn: fn });
+  if (cached) {
+    return cached.delegator;
+  }
+  delegates[filter].push({
+    fn: fn, delegator: delegator
+  });
+  function delegator (e) {
+    var ok = api.matches(e.target, filter);
+    if (ok) {
+      fn.apply(this, arguments);
+    }
+  }
+  return delegator;
+}
+
+api.on = function (elem, type, filter, fn) {
+  if (fn === void 0) {
+    events.add(elem, type, filter); // filter _is_ fn
+  } else {
+    events.add(elem, type, delegate(filter, fn));
+  }
+};
+
+api.off = function (elem, type, filter, fn) {
+  if (fn === void 0) {
+    events.remove(elem, type, filter); // filter _is_ fn
+  } else {
+    events.remove(elem, type, delegate(filter, fn));
+  }
 };
 
 api.html = function (elem, html) {

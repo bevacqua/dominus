@@ -128,9 +128,19 @@ _You can physically alter the DOM, using the methods listed in the next category
 
 ## DOM Manipulation
 
-### `a.on(type, fn)`
+### `a.on(type, filter?, fn)`
 
-Attaches the event handler `fn` for events of type `type` on every element in the `Dominus` collection. You can also pass in a list of event types, such as `click dragstart`, and both events would get an event listener.
+Attaches the event handler `fn` for events of type `type` on every element in the `Dominus` collection. You can also pass in a list of event types, such as `click dragstart`, and both events get the event listener attached to them.
+
+The `filter?` argument is optional, and you can use it to provide a selector that will filter inputs. This is known as event delegation. The example below will bind a single event listener that will fire only when child nodes matching the `.remove` selector are clicked.
+
+```js
+$('.products').on('click', '.remove', removeProduct);
+```
+
+### `a.off(type, filter?, fn)`
+
+Turns off event listeners matching the event `type`, the `filter` selector _(if any)_, and the event handler.
 
 ### `a.clone()`
 

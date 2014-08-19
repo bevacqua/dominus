@@ -30,6 +30,7 @@
     "vinyl-source-stream": "^0.1.1"
   },
   "dependencies": {
+    "lodash.find": "^2.4.1",
     "poser": "^1.1.0",
     "sizzle": "^2.0.0"
   }
