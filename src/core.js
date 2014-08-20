@@ -27,14 +27,15 @@ function cast (a) {
   });
 }
 
-function flatten (a) {
+function flatten (a, cache) {
   return a.reduce(function (current, item) {
     if (Dominus.isArray(item)) {
-      return current.concat(flatten(item));
-    } else {
+      return flatten(item, current);
+    } else if (current.indexOf(item) === -1) {
       return current.concat(item);
     }
-  }, new Dominus());
+    return current;
+  }, cache || new Dominus());
 }
 
 module.exports = {

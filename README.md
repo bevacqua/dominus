@@ -208,11 +208,17 @@ The methods listed below affect the collection itself
 
 Besides the fact that `Dominus` is an [out-of-context `Array` object][3], meaning you can do all the fun functional programming you're used to, there's a few more methods to manipulate the collection itself.
 
-### `a.add(_*_)`
+### `a.and(_*_)`
 
 Adds the result of calling [`dominus()`](#dominus-1) with the arguments you provided to the current collection.
 
-This means that you can use `.add` with selectors, a DOM element, an array of DOM elements, or another Dominus collection.
+This means that you can use `.and` with selectors, a DOM element, an array of DOM elements, or another Dominus collection.
+
+### `a.but(_*_)`
+
+Removes the result of calling [`dominus()`](#dominus-1) with the arguments you provided from the current collection.
+
+This means that you can use `.but` with selectors, a DOM element, an array of DOM elements, or another Dominus collection.
 
 # License
 

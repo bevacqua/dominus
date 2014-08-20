@@ -38,9 +38,25 @@ Dominus.prototype.is = function (selector) {
   return this.some(equals(selector));
 };
 
-Dominus.prototype.add = function () {
-  this.push.apply(this, $.call(null, arguments));
-};
+function compareFactory (fn) {
+  return function compare () {
+    $.apply(null, arguments).forEach(fn, this);
+    return this;
+  };
+}
+
+Dominus.prototype.and = compareFactory(function addOne (elem) {
+  if (this.indexOf(elem) === -1) {
+    this.push(elem);
+  }
+});
+
+Dominus.prototype.but = compareFactory(function addOne (elem) {
+  var index = this.indexOf(elem);
+  if (index !== -1) {
+    this.splice(index, 1);
+  }
+});
 
 Dominus.prototype.on = function (types, filter, fn) {
   this.forEach(function (elem) {

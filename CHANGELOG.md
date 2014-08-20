@@ -1,7 +1,8 @@
 # v1.6.0 Beat the Bush
 
 - Introduced `.prev`, `.next`, `.parent`, `.parents`, and `.children` methods
-- Introduced `.add` API method
+- Introduced `.and` and `.but` API methods
+- Fixed an issue where you could potentially get duplicate nodes in a Dominus collection
 
 # v1.5.0 Venture Beat
 
