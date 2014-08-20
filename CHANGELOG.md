@@ -1,3 +1,8 @@
+# v1.6.0 Beat the Bush
+
+- Introduced `.prev`, `.next`, `.parent`, `.parents`, and `.children` methods
+- Introduced `.add` API method
+
 # v1.5.0 Venture Beat
 
 - Introduced event delegation

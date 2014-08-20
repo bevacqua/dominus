@@ -66,9 +66,25 @@ Once you've gotten yourself a `Dominus` collection, there's a few more methods y
 
 _First off, there's the selection methods._
 
-## Selection API
+## Navigation API
 
 These methods let you search the DOM for the nodes that you want to manipulate.
+
+### `a.prev(selector?)`
+
+Returns the previous sibling, optionally filtered by a `selector`.
+
+### `a.next(selector?)`
+
+Returns the next sibling, optionally filtered by a `selector`.
+
+### `a.parent(selector?)`
+
+Returns the first parent element, optionally filtered by a `selector`.
+
+### `a.parents(selector?)`
+
+Returns all parent elements, optionally filtered by a `selector`.
 
 ### `a.find(selector)`
 
@@ -77,6 +93,10 @@ Queries the DOM for children of the elements in the array, using the provided se
 ### `a.findOne(selector)`
 
 Queries the DOM for children of the elements in the array, using the provided selector. Returns the first matching [`HTMLElement`][2] object, if any.
+
+### `a.children(selector?)`
+
+Like find, but only one level deep. The `selector` filter is optional.
 
 ### `a.where(selector)`
 
@@ -181,6 +201,18 @@ Inserts every element in the collection as the previous siblings of the provided
 ### `a.afterOf(elem)`
 
 Inserts every element in the collection as the next siblings of the provided `elem`.
+
+The methods listed below affect the collection itself
+
+## Dominus Collection Methods
+
+Besides the fact that `Dominus` is an [out-of-context `Array` object][3], meaning you can do all the fun functional programming you're used to, there's a few more methods to manipulate the collection itself.
+
+### `a.add(_*_)`
+
+Adds the result of calling [`dominus()`](#dominus-1) with the arguments you provided to the current collection.
+
+This means that you can use `.add` with selectors, a DOM element, an array of DOM elements, or another Dominus collection.
 
 # License
 

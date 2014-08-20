@@ -3,6 +3,7 @@
 var sizzle = require('sizzle');
 var find = require('lodash.find');
 var Dominus = require('./Dominus.ctor');
+var core = require('./core')
 var events = require('./events');
 var text = require('./text');
 var test = require('./test');
@@ -20,6 +21,65 @@ api.qs = function (elem, selector) {
 
 api.matches = function (elem, selector) {
   return sizzle.matchesSelector(elem, selector);
+};
+
+function relatedFactory (prop) {
+  return function related (elem, selector) {
+    var relative = elem[prop];
+    if (relative) {
+      if (!selector || api.matches(relative, selector)) {
+        return core.cast(relative);
+      }
+    }
+    return new Dominus();
+  };
+}
+
+api.prev = relatedFactory('previousSibling');
+api.next = relatedFactory('nextSibling');
+api.parent = relatedFactory('parentNode');
+
+api.parents = function (elem, selector) {
+  var nodes = [];
+  var node = elem;
+  while (node.parentNode) {
+    if (!selector || api.matches(node.parentNode, selector)) {
+      nodes.push(node.parentNode);
+    }
+    node = node.parentNode;
+  }
+  return core.cast(nodes);
+};
+
+api.children = function (elem, selector) {
+  var nodes = [];
+  var children = node.children;
+  var child;
+  var i;
+  for (i = 0; i < children.length; i++) {
+    child = children[i];
+    if (!selector || api.matches(child, selector)) {
+      nodes.push(child);
+    }
+  }
+  return core.cast(nodes);
+};
+
+api.find = function (elem, selector) {
+  var nodes = [];
+  var children = node.children;
+  var child;
+  var i;
+  while (children) {
+    for (i = 0; i < children.length; i++) {
+      child = children[i];
+      if (!selector || api.matches(child, selector)) {
+        nodes.push(child);
+      }
+      nodes = nodes.concat(api.find(child, selector));
+    }
+  }
+  return core.cast(nodes);
 };
 
 // this method caches delegates so that .off() works seamlessly

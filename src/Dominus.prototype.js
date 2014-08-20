@@ -1,5 +1,6 @@
 'use strict';
 
+var $ = require('./public');
 var core = require('./core');
 var dom = require('./dom');
 var classes = require('./classes');
@@ -11,19 +12,23 @@ function equals (selector) {
   };
 }
 
-Dominus.prototype.find = function (selector) {
-  var result = this.map(function (elem) {
-    return dom.qsa(elem, selector);
-  });
-  return core.flatten(result);
-};
+function straight (prop, one) {
+  return function domMapping (selector) {
+    var result = this.map(function (elem) {
+      return dom[prop](elem, selector);
+    });
+    var results = core.flatten(result);
+    return one ? results[0] : results;
+  };
+}
 
-Dominus.prototype.findOne = function (selector) {
-  var result = this.map(function (elem) {
-    return dom.qs(elem, selector);
-  });
-  return core.flatten(result)[0];
-};
+Dominus.prototype.prev = straight('prev');
+Dominus.prototype.next = straight('next');
+Dominus.prototype.parent = straight('parent');
+Dominus.prototype.parents = straight('parents');
+Dominus.prototype.children = straight('children');
+Dominus.prototype.find = straight('qsa');
+Dominus.prototype.findOne = straight('qs', true);
 
 Dominus.prototype.where = function (selector) {
   return this.filter(equals(selector));
@@ -31,6 +36,10 @@ Dominus.prototype.where = function (selector) {
 
 Dominus.prototype.is = function (selector) {
   return this.some(equals(selector));
+};
+
+Dominus.prototype.add = function () {
+  this.push.apply(this, $.call(null, arguments));
 };
 
 Dominus.prototype.on = function (types, filter, fn) {
