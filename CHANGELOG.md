@@ -1,3 +1,7 @@
+# v2.0.0 Mortal Kombat
+
+- Dropped `Sizzle` in favor of `sektor`, which is much smaller
+
 # v1.6.0 Beat the Bush
 
 - Introduced `.prev`, `.next`, `.parent`, `.parents`, and `.children` methods

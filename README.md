@@ -2,7 +2,7 @@
 
 > Lean DOM Manipulation
 
-This isn't a drop-in replacement for jQuery, but rather a different implementation. Dominus is like **jQuery minus the cruft**. Dominus uses [`Sizzle`][1] as its selector engine of choice, so you can rest assured that the best part of jQuery is also available in Dominus.
+This isn't a drop-in replacement for jQuery, but rather a different implementation. Dominus is like **jQuery minus the cruft**. Dominus uses [`sektor`][1] as its selector engine of choice, which is a drop-in replacement for [Sizzle][4], but tens of times smaller in exchange for a more limited feature-set.
 
 Just like with jQuery, Dominus exposes a rich API that's chainable to the best of its ability. The biggest difference with jQuery at this level is that the `Dominus` wrapper is a real array. These arrays have been modified to include a few other properties in their prototype, but they don't change the native DOM array. [See `poser` for more details on that one.][3] All of this means you can `.map`, `.forEach`, `.filter`, and all of that good stuff that you're used to when dealing with JavaScript collections, and at the same time you get some extra methods just like with jQuery.
 
@@ -54,11 +54,11 @@ See `dominus.find` below.
 
 ### `dominus.find(selector, context?)`
 
-Queries the DOM for the provided selector, using [Sizzle][1]. Returns a `Dominus` collection with [`HTMLElement`][2] objects. If `context` is provided then the search is restricted to children of `context`.
+Queries the DOM for the provided selector, using [`sektor`][1]. Returns a `Dominus` collection with [`HTMLElement`][2] objects. If `context` is provided then the search is restricted to children of `context`.
 
 ### `dominus.findOne(selector, context?)`
 
-Queries the DOM for the provided selector, using [Sizzle][1]. Returns the first matching [`HTMLElement`][2] object, if any. If `context` is provided then the search is restricted to children of `context`.
+Queries the DOM for the provided selector, using [`sektor`][1]. Returns the first matching [`HTMLElement`][2] object, if any. If `context` is provided then the search is restricted to children of `context`.
 
 ## Instance Methods
 
@@ -224,6 +224,7 @@ This means that you can use `.but` with selectors, a DOM element, an array of DO
 
 MIT
 
-[1]: http://sizzlejs.com/ "Sizzle.js Selector Engine"
+[1]: https://github.com/bevacqua/sektor
 [2]: https://developer.mozilla.org/en/docs/Web/API/HTMLElement
 [3]: https://github.com/bevacqua/poser
+[4]: https://github.com/jquery/sizzle

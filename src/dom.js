@@ -1,6 +1,6 @@
 'use strict';
 
-var sizzle = require('sizzle');
+var sektor = require('sektor');
 var find = require('lodash.find');
 var Dominus = require('./Dominus.ctor');
 var core = require('./core')
@@ -12,7 +12,7 @@ var delegates = {};
 
 api.qsa = function (elem, selector) {
   var results = new Dominus();
-  return sizzle(selector, elem, results);
+  return sektor(selector, elem, results);
 };
 
 api.qs = function (elem, selector) {
@@ -20,7 +20,7 @@ api.qs = function (elem, selector) {
 };
 
 api.matches = function (elem, selector) {
-  return sizzle.matchesSelector(elem, selector);
+  return sektor.matchesSelector(elem, selector);
 };
 
 function relatedFactory (prop) {

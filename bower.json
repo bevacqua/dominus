@@ -1,8 +1,8 @@
 {
-  "name": "domu",
+  "name": "dominus",
   "description": "Lean DOM Manipulation",
   "version": "1.6.0",
-  "homepage": "https://github.com/bevacqua/domu",
+  "homepage": "https://github.com/bevacqua/dominus",
   "author": {
     "name": "Nicolas Bevacqua",
     "email": "ng@bevacqua.io",
@@ -11,9 +11,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/bevacqua/domu.git"
+    "url": "git://github.com/bevacqua/dominus.git"
   },
-  "main": "dist/domu.js",
+  "main": "dist/dominus.js",
   "ignore": [
     ".*",
     "package.json",
