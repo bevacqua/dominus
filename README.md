@@ -1,4 +1,4 @@
-# dominus
+![dominus.png][5]
 
 > Lean DOM Manipulation
 
@@ -228,3 +228,4 @@ MIT
 [2]: https://developer.mozilla.org/en/docs/Web/API/HTMLElement
 [3]: https://github.com/bevacqua/poser
 [4]: https://github.com/jquery/sizzle
+[5]: https://raw.githubusercontent.com/bevacqua/dominus/master/resources/dominus.png
