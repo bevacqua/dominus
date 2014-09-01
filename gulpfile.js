@@ -102,4 +102,6 @@ gulp.task('bump', bumpOnly);
 gulp.task('bump-build', ['bump'], build);
 gulp.task('tag', ['bump-build'], tag);
 gulp.task('npm', publish);
-gulp.task('release', ['tag', 'npm']);
+gulp.task('release', ['tag'], function () {
+  gulp.start('npm');
+});
