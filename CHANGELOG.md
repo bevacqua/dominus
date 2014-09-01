@@ -1,3 +1,8 @@
+# v2.0.1 Bumpy Road
+
+- Bumped `sektor` to 1.1.1, see [its changelog][1] for fixes
+- Improved internal build process, automated footprint comparison
+
 # v2.0.0 Mortal Kombat
 
 - Dropped `Sizzle` in favor of `sektor`, which is much smaller
@@ -60,3 +65,5 @@
 # v1.0.0 IPO
 
 - Initial Public Release
+
+[1]: https://github.com/bevacqua/sektor/blob/master/CHANGELOG.md#111-short-circuit

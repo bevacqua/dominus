@@ -27,11 +27,14 @@
     "gulp-streamify": "0.0.5",
     "gulp-stylus": "^1.0.0",
     "gulp-uglify": "^0.3.0",
+    "gzip-size": "^1.0.0",
+    "jquery": "^1.11.1",
+    "pretty-bytes": "^1.0.1",
     "vinyl-source-stream": "^0.1.1"
   },
   "dependencies": {
     "lodash.find": "^2.4.1",
     "poser": "^1.1.0",
-    "sektor": "^1.0.1"
+    "sektor": "^1.1.1"
   }
 }
