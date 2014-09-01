@@ -105,3 +105,4 @@ gulp.task('npm', publish);
 gulp.task('release', ['tag'], function () {
   gulp.start('npm');
 });
+
