@@ -1,4 +1,4 @@
-# v2.0.4 Bumpy Road
+# v2.0.5 Bumpy Road
 
 - Bumped `sektor` to 1.1.1, see [its changelog][1] for fixes
 - Improved internal build process, automated footprint comparison

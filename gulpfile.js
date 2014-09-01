@@ -66,7 +66,7 @@ function replaceFootprint (needle, relative, done) {
 }
 
 function footprint (done) {
-  var dominusNeedle = /(with a footprint of \*\*)(\S*)(\*\*) minified and gzipped/mig;
+  var dominusNeedle = /(with a footprint of \*\*)(\S*)(\*\* minified and gzipped)/mig;
   var jqueryNeedle = /(vs the \*\*)(\S*)(\*\* in jQuery)/mig;
 
   contra.series([
