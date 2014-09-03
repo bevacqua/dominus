@@ -54,11 +54,11 @@ See `dominus.find` below.
 
 ### `dominus.find(selector, context?)`
 
-Queries the DOM for the provided selector, using [`sektor`][1]. Returns a `Dominus` collection with [`HTMLElement`][2] objects. If `context` is provided then the search is restricted to children of `context`.
+Queries the DOM for the provided selector, using [`sektor`][1]. Returns a `Dominus` collection with [`HTMLElement`][2] objects. If `context` is provided then the search is restricted to children of `context`. The `context` can be either a DOM element, a selector string, or a Dominus object (the first DOM element in the group is used).
 
 ### `dominus.findOne(selector, context?)`
 
-Queries the DOM for the provided selector, using [`sektor`][1]. Returns the first matching [`HTMLElement`][2] object, if any. If `context` is provided then the search is restricted to children of `context`.
+Queries the DOM for the provided selector, using [`sektor`][1]. Returns the first matching [`HTMLElement`][2] object, if any. If `context` is provided then the search is restricted to children of `context`. The `context` can be either a DOM element, a selector string, or a Dominus object (the first DOM element in the group is used).
 
 ## Instance Methods
 
