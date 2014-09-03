@@ -10,9 +10,22 @@ var test = require('./test');
 var api = module.exports = {};
 var delegates = {};
 
+function castContext (context) {
+  if (typeof context === 'string') {
+    return api.qs(null, context);
+  }
+  if (test.isElement(context)) {
+    return context;
+  }
+  if (context instanceof Dominus) {
+    return context[0];
+  }
+  return null;
+}
+
 api.qsa = function (elem, selector) {
   var results = new Dominus();
-  return sektor(selector, elem, results);
+  return sektor(selector, castContext(elem), results);
 };
 
 api.qs = function (elem, selector) {

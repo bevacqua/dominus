@@ -1,3 +1,7 @@
+# v2.0.6 Context King
+
+- You can now pass a context by using a selector, a Dominus object, or a DOM element
+
 # v2.0.5 Bumpy Road
 
 - Bumped `sektor` to 1.1.1, see [its changelog][1] for fixes
