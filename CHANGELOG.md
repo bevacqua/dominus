@@ -1,3 +1,7 @@
+# v2.0.10 Class Hierarchy
+
+- Fixed a bug where `.addClass` would replace the existing `className` values with the newer ones
+
 # v2.0.9 Show and Tell
 
 - Included `.hide` and `.show` methods with a rich API

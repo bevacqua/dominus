@@ -18,23 +18,21 @@ function set (node, input) {
 function add (node, input) {
   var current = remove(node, input);
   var values = interpret(input);
-
   current.push.apply(current, values);
-  set(node, values);
+  set(node, current);
+  return current;
 }
 
 function remove (node, input) {
   var current = classes(node);
   var values = interpret(input);
-
   values.forEach(function (value) {
     var i = current.indexOf(value);
     if (i !== -1) {
       current.splice(i, 1);
-      set(node, current);
     }
   });
-
+  set(node, current);
   return current;
 }
 
