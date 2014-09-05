@@ -267,3 +267,28 @@ function flip (key) {
     api[original](target, elem);
   };
 }
+
+api.show = function (elem, should, invert) {
+  if (elem instanceof Dominus) {
+    elem.forEach(showTest);
+  } else {
+    showTest(elem);
+  }
+
+  function showTest (current) {
+    var ok = should === void 0 || should === true || typeof should === 'function' && should.call(current);
+    display(current, invert ? !ok : ok);
+  }
+}
+
+api.hide = function (elem, should) {
+  api.show(elem, should, true);
+}
+
+function display (elem, should) {
+  if (should) {
+    elem.style.display = 'block';
+  } else {
+    elem.style.display = 'none';
+  }
+}

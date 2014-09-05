@@ -2,7 +2,7 @@
 
 > Lean DOM Manipulation
 
-This isn't a drop-in replacement for jQuery, but rather a different implementation. Dominus is **jQuery minus the cruft**, with a footprint of **7.28kB** minified and gzipped, vs the **33.29kB** in jQuery. Dominus uses [`sektor`][1] as its selector engine of choice, which is a drop-in replacement for [Sizzle][4], but tens of times smaller in exchange for a more limited feature-set.
+This isn't a drop-in replacement for jQuery, but rather a different implementation. Dominus is **jQuery minus the cruft**, with a footprint of **7.37kB** minified and gzipped, vs the **33.29kB** in jQuery. Dominus uses [`sektor`][1] as its selector engine of choice, which is a drop-in replacement for [Sizzle][4], but tens of times smaller in exchange for a more limited feature-set.
 
 Just like with jQuery, Dominus exposes a rich API that's chainable to the best of its ability. The biggest difference with jQuery at this level is that the `Dominus` wrapper is a real array. These arrays have been modified to include a few other properties in their prototype, but they don't change the native DOM array. [See `poser` for more details on that one.][3] All of this means you can `.map`, `.forEach`, `.filter`, and all of that good stuff that you're used to when dealing with JavaScript collections, and at the same time you get some extra methods just like with jQuery.
 
@@ -143,6 +143,14 @@ Sets `value` for every element in the collection. `value` can either be a space-
 ### `a.hasClass(value)`
 
 Returns `true` if at least one of the elements in the collection matches every class in `value`. `value` can either be a space-separated class list or an array.
+
+### `a.show(shown)`
+
+Sets `display: block` on the element if `shown` is either `undefined`, `true`, or a function that will be invoked for each element in `a`. If it's a function then each elemnt will be shown or hidden according to the result of that function. The function is passed no arguments and `this` is assigned to each element.
+
+### `a.hide(hidden)`
+
+Sets `display: none` on the element if `hidden` is either `undefined`, `true`, or a function that will be invoked for each element in `a`. If it's a function then each elemnt will be shown or hidden according to the result of that function. The function is passed no arguments and `this` is assigned to each element.
 
 _You can physically alter the DOM, using the methods listed in the next category._
 

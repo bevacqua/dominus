@@ -103,7 +103,9 @@ function mapMethods (data) {
   ['before', dom.before],
   ['beforeOf', dom.beforeOf],
   ['after', dom.after],
-  ['afterOf', dom.afterOf]
+  ['afterOf', dom.afterOf],
+  ['show', dom.show],
+  ['hide', dom.hide]
 ].forEach(mapManipulation);
 
 function mapManipulation (data) {

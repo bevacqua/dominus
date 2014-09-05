@@ -1,3 +1,7 @@
+# v2.0.9 Show and Tell
+
+- Included `.hide` and `.show` methods with a rich API
+
 # v2.0.8 Questionable Tactics
 
 - Fixed a bug where `.and`, `.but` API methods weren't chaining
