@@ -1,3 +1,7 @@
+# v2.0.7 Parental Advise
+
+- Replaced internal instances of `.parentNode` with `.parentElement` to avoid hitting the `#document` node
+
 # v2.0.6 Context King
 
 - You can now pass a context by using a selector, a Dominus object, or a DOM element

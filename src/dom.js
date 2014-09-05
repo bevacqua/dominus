@@ -50,16 +50,16 @@ function relatedFactory (prop) {
 
 api.prev = relatedFactory('previousSibling');
 api.next = relatedFactory('nextSibling');
-api.parent = relatedFactory('parentNode');
+api.parent = relatedFactory('parentElement');
 
 api.parents = function (elem, selector) {
   var nodes = [];
   var node = elem;
-  while (node.parentNode) {
-    if (!selector || api.matches(node.parentNode, selector)) {
-      nodes.push(node.parentNode);
+  while (node.parentElement) {
+    if (!selector || api.matches(node.parentElement, selector)) {
+      nodes.push(node.parentElement);
     }
-    node = node.parentNode;
+    node = node.parentElement;
   }
   return core.cast(nodes);
 };
@@ -193,8 +193,8 @@ api.clone = function (elem) {
 };
 
 api.remove = function (elem) {
-  if (elem.parentNode) {
-    elem.parentNode.removeChild(elem);
+  if (elem.parentElement) {
+    elem.parentElement.removeChild(elem);
   }
 };
 
@@ -216,8 +216,8 @@ api.before = function (elem, target) {
   if (manipulationGuard(elem, target, api.before)) {
     return;
   }
-  if (elem.parentNode) {
-    elem.parentNode.insertBefore(target, elem);
+  if (elem.parentElement) {
+    elem.parentElement.insertBefore(target, elem);
   }
 };
 
@@ -225,8 +225,8 @@ api.after = function (elem, target) {
   if (manipulationGuard(elem, target, api.after)) {
     return;
   }
-  if (elem.parentNode) {
-    elem.parentNode.insertBefore(target, elem.nextSibling);
+  if (elem.parentElement) {
+    elem.parentElement.insertBefore(target, elem.nextSibling);
   }
 };
 
