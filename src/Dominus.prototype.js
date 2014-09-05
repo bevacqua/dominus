@@ -49,6 +49,7 @@ Dominus.prototype.and = compareFactory(function addOne (elem) {
   if (this.indexOf(elem) === -1) {
     this.push(elem);
   }
+  return this;
 });
 
 Dominus.prototype.but = compareFactory(function addOne (elem) {
@@ -56,6 +57,7 @@ Dominus.prototype.but = compareFactory(function addOne (elem) {
   if (index !== -1) {
     this.splice(index, 1);
   }
+  return this;
 });
 
 Dominus.prototype.on = function (types, filter, fn) {

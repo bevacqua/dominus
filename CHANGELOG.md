@@ -1,3 +1,7 @@
+# v2.0.8 Questionable Tactics
+
+- Fixed a bug where `.and`, `.but` API methods weren't chaining
+
 # v2.0.7 Parental Advise
 
 - Replaced internal instances of `.parentNode` with `.parentElement` to avoid hitting the `#document` node
