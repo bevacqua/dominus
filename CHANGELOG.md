@@ -1,3 +1,7 @@
+# v2.0.11 Relatives
+
+- Improved `.children` and `.parents`, now able to filter by other collections or DOM elements
+
 # v2.0.10 Class Hierarchy
 
 - Fixed a bug where `.addClass` would replace the existing `className` values with the newer ones

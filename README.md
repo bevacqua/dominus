@@ -82,9 +82,13 @@ Returns the next sibling, optionally filtered by a `selector`.
 
 Returns the first parent element, optionally filtered by a `selector`.
 
-### `a.parents(selector?)`
+### `a.parents(value?)`
 
-Returns all parent elements, optionally filtered by a `selector`.
+Returns all parent elements, optionally filtered by another Dominus collection, a DOM element, or a selector.
+
+### `a.children(value?)`
+
+Like `.find`, but only one level deep. Optionally filtered by another Dominus collection, a DOM element, or a selector.
 
 ### `a.find(selector)`
 
@@ -93,10 +97,6 @@ Queries the DOM for children of the elements in the array, using the provided se
 ### `a.findOne(selector)`
 
 Queries the DOM for children of the elements in the array, using the provided selector. Returns the first matching [`HTMLElement`][2] object, if any.
-
-### `a.children(selector?)`
-
-Like find, but only one level deep. The `selector` filter is optional.
 
 ### `a.where(selector)`
 

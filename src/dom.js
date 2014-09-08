@@ -52,11 +52,24 @@ api.prev = relatedFactory('previousSibling');
 api.next = relatedFactory('nextSibling');
 api.parent = relatedFactory('parentElement');
 
-api.parents = function (elem, selector) {
+function matches (elem, value) {
+  if (!value) {
+    return true;
+  }
+  if (value instanceof Dominus) {
+    return value.indexOf(elem) !== -1;
+  }
+  if (test.isElement(value)) {
+    return elem === value;
+  }
+  return api.matches(elem, value);
+}
+
+api.parents = function (elem, value) {
   var nodes = [];
   var node = elem;
   while (node.parentElement) {
-    if (!selector || api.matches(node.parentElement, selector)) {
+    if (matches(node.parentElement, value)) {
       nodes.push(node.parentElement);
     }
     node = node.parentElement;
@@ -64,32 +77,15 @@ api.parents = function (elem, selector) {
   return core.cast(nodes);
 };
 
-api.children = function (elem, selector) {
+api.children = function (elem, value) {
   var nodes = [];
-  var children = node.children;
+  var children = elem.children;
   var child;
   var i;
   for (i = 0; i < children.length; i++) {
     child = children[i];
-    if (!selector || api.matches(child, selector)) {
+    if (matches(child, value)) {
       nodes.push(child);
-    }
-  }
-  return core.cast(nodes);
-};
-
-api.find = function (elem, selector) {
-  var nodes = [];
-  var children = node.children;
-  var child;
-  var i;
-  while (children) {
-    for (i = 0; i < children.length; i++) {
-      child = children[i];
-      if (!selector || api.matches(child, selector)) {
-        nodes.push(child);
-      }
-      nodes = nodes.concat(api.find(child, selector));
     }
   }
   return core.cast(nodes);
