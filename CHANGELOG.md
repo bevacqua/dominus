@@ -1,3 +1,7 @@
+# v2.1.0 Keen Listener
+
+- Delegated events now match the event target as well as any parents that are also children of the delegate root
+
 # v2.0.11 Relatives
 
 - Improved `.children` and `.parents`, now able to filter by other collections or DOM elements

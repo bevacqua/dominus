@@ -92,21 +92,19 @@ api.children = function (elem, value) {
 };
 
 // this method caches delegates so that .off() works seamlessly
-function delegate (filter, fn) {
-  if (!delegates[filter]) {
-    delegates[filter] = [];
+function delegate (root, filter, fn) {
+  if (delegates[fn._dd]) {
+    return delegates[fn._dd];
   }
-  var cached = find(delegates[filter], { fn: fn });
-  if (cached) {
-    return cached.delegator;
-  }
-  delegates[filter].push({
-    fn: fn, delegator: delegator
-  });
+  fn._dd = Date.now();
+  delegates[fn._dd] = delegator;
   function delegator (e) {
-    var ok = api.matches(e.target, filter);
-    if (ok) {
-      fn.apply(this, arguments);
+    var elem = e.target;
+    while (elem && elem !== root) {
+      if (api.matches(elem, filter)) {
+        fn.apply(this, arguments); return;
+      }
+      elem = elem.parentElement;
     }
   }
   return delegator;
@@ -116,7 +114,7 @@ api.on = function (elem, type, filter, fn) {
   if (fn === void 0) {
     events.add(elem, type, filter); // filter _is_ fn
   } else {
-    events.add(elem, type, delegate(filter, fn));
+    events.add(elem, type, delegate(elem, filter, fn));
   }
 };
 
@@ -124,7 +122,7 @@ api.off = function (elem, type, filter, fn) {
   if (fn === void 0) {
     events.remove(elem, type, filter); // filter _is_ fn
   } else {
-    events.remove(elem, type, delegate(filter, fn));
+    events.remove(elem, type, delegate(elem, filter, fn));
   }
 };
 
