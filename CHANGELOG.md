@@ -1,3 +1,7 @@
+# v2.1.1 Campus Lantern
+
+- Bumped `poser` to `1.1.5`
+
 # v2.1.0 Keen Listener
 
 - Delegated events now match the event target as well as any parents that are also children of the delegate root
