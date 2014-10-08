@@ -1,3 +1,7 @@
+# v2.1.2 Switchboard
+
+- Use Node implementation of `poser`
+
 # v2.1.1 Campus Lantern
 
 - Bumped `poser` to `1.1.5`
