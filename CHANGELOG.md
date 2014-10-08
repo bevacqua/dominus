@@ -1,3 +1,7 @@
+# v2.2.0 Cupboard
+
+- Bumped `poser` to `1.2.0`
+
 # v2.1.3 Switchboard
 
 - Use Node implementation of `poser`

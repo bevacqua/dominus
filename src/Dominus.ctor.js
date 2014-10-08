@@ -1,6 +1,6 @@
 'use strict';
 
-var poser = require('poser/src/node');
-var Dominus = Array;
+var poser = require('poser');
+var Dominus = poser.Array();
 
 module.exports = Dominus;
