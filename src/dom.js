@@ -3,7 +3,7 @@
 var sektor = require('sektor');
 var find = require('lodash.find');
 var Dominus = require('./Dominus.ctor');
-var core = require('./core')
+var core = require('./core');
 var events = require('./events');
 var text = require('./text');
 var test = require('./test');
@@ -273,11 +273,11 @@ api.show = function (elem, should, invert) {
     var ok = should === void 0 || should === true || typeof should === 'function' && should.call(current);
     display(current, invert ? !ok : ok);
   }
-}
+};
 
 api.hide = function (elem, should) {
   api.show(elem, should, true);
-}
+};
 
 function display (elem, should) {
   if (should) {

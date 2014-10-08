@@ -1,3 +1,7 @@
+# v2.2.2 Feet Flight
+
+- Fix issue where removing events failed in old browsers
+
 # v2.2.1 Cupboard
 
 - Bumped `poser` to `1.2.0`
