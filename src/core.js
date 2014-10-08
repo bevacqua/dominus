@@ -22,9 +22,9 @@ function cast (a) {
   if (!test.isArray(a)) {
     return new Dominus();
   }
-  return new Applied(a).filter(function (i) {
+  return new Applied(a.filter(function (i) {
     return test.isElement(i);
-  });
+  }));
 }
 
 function flatten (a, cache) {
