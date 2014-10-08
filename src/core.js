@@ -2,12 +2,22 @@
 
 var test = require('./test');
 var Dominus = require('./Dominus.ctor');
+var proto = Dominus.prototype;
 
 function Applied (args) {
   return Dominus.apply(this, args);
 }
 
-Applied.prototype = Dominus.prototype;
+Applied.prototype = proto;
+
+['map', 'filter', 'concat'].forEach(casted);
+
+function casted (key) {
+  var original = proto[key];
+  proto[key] = function casting () {
+    cast(original.apply(this, arguments));
+  };
+}
 
 function cast (a) {
   if (a instanceof Dominus) {

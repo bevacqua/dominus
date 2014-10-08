@@ -31,7 +31,7 @@ Dominus.prototype.find = straight('qsa');
 Dominus.prototype.findOne = straight('qs', true);
 
 Dominus.prototype.where = function (selector) {
-  return new Dominus(this.filter(equals(selector)));
+  return this.filter(equals(selector));
 };
 
 Dominus.prototype.is = function (selector) {
@@ -153,9 +153,9 @@ function keyValueProperty (prop) {
 ['html', 'text', 'value'].forEach(keyValueProperty);
 
 Dominus.prototype.clone = function () {
-  return new Dominus(this.map(function (elem) {
+  return this.map(function (elem) {
     return dom.clone(elem);
-  }));
+  });
 };
 
 module.exports = require('./public');

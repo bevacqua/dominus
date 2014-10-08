@@ -1,3 +1,7 @@
+# v2.3.1 Parallel Processing
+
+- Override `.map` and `.filter` so that they always return a Dominus array
+
 # v2.3.0 Energy Flux
 
 - Fixed a bug where mapping and filtering resulted in Dominus arrays being demoted to regular arrays in mobile browsers
