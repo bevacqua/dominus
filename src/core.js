@@ -15,7 +15,7 @@ Applied.prototype = proto;
 function casted (key) {
   var original = proto[key];
   proto[key] = function casting () {
-    cast(original.apply(this, arguments));
+    return cast(original.apply(this, arguments));
   };
 }
 
