@@ -1,4 +1,4 @@
-# v2.2.0 Cupboard
+# v2.2.1 Cupboard
 
 - Bumped `poser` to `1.2.0`
 
