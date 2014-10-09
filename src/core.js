@@ -10,13 +10,17 @@ function Applied (args) {
 
 Applied.prototype = proto;
 
-['map', 'filter', 'concat'].forEach(apply);
+['map', 'filter', 'concat'].forEach(ensure);
 
-function apply (key) {
+function ensure (key) {
   var original = proto[key];
-  proto[key] = function casting () {
-    return new Applied(original.apply(this, arguments));
+  proto[key] = function applied () {
+    return apply(original.apply(this, arguments));
   };
+}
+
+function apply (a) {
+  return new Applied(a);
 }
 
 function cast (a) {
@@ -32,9 +36,9 @@ function cast (a) {
   if (!test.isArray(a)) {
     return new Dominus();
   }
-  return new Applied(a.filter(function (i) {
+  return apply(a).filter(function (i) {
     return test.isElement(i);
-  }));
+  });
 }
 
 function flatten (a, cache) {
@@ -49,6 +53,7 @@ function flatten (a, cache) {
 }
 
 module.exports = {
+  apply: apply,
   cast: cast,
   flatten: flatten
 };

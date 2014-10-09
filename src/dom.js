@@ -74,7 +74,7 @@ api.parents = function (elem, value) {
     }
     node = node.parentElement;
   }
-  return core.cast(nodes);
+  return core.apply(nodes);
 };
 
 api.children = function (elem, value) {
@@ -88,7 +88,7 @@ api.children = function (elem, value) {
       nodes.push(child);
     }
   }
-  return core.cast(nodes);
+  return core.apply(nodes);
 };
 
 // this method caches delegates so that .off() works seamlessly
