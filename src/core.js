@@ -10,12 +10,12 @@ function Applied (args) {
 
 Applied.prototype = proto;
 
-['map', 'filter', 'concat'].forEach(casted);
+['map', 'filter', 'concat'].forEach(apply);
 
-function casted (key) {
+function apply (key) {
   var original = proto[key];
   proto[key] = function casting () {
-    return cast(original.apply(this, arguments));
+    return new Applied(original.apply(this, arguments));
   };
 }
 

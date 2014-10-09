@@ -1,4 +1,4 @@
-# v2.3.2 Parallel Processing
+# v2.3.3 Parallel Processing
 
 - Override `.map` and `.filter` so that they always return a Dominus array
 
