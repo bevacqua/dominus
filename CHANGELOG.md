@@ -1,3 +1,7 @@
+# v2.3.5 Fat Trimmer
+
+- Removed dependency on `lodash.find`
+
 # v2.3.4 Haystack
 
 - Added `.i(index)` method
