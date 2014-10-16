@@ -1,3 +1,7 @@
+# v2.3.4 Haystack
+
+- Added `.i(index)` method
+
 # v2.3.4 Parallel Processing
 
 - Override `.map` and `.filter` so that they always return a Dominus array

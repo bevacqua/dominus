@@ -38,6 +38,10 @@ Dominus.prototype.is = function (selector) {
   return this.some(equals(selector));
 };
 
+Dominus.prototype.i = function (index) {
+  return new Dominus(this[index]);
+};
+
 function compareFactory (fn) {
   return function compare () {
     $.apply(null, arguments).forEach(fn, this);
