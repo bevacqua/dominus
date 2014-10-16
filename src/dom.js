@@ -1,7 +1,6 @@
 'use strict';
 
 var sektor = require('sektor');
-var find = require('lodash.find');
 var Dominus = require('./Dominus.ctor');
 var core = require('./core');
 var events = require('./events');
