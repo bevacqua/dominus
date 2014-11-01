@@ -12,7 +12,7 @@ function classes (node) {
 }
 
 function set (node, input) {
-  node.className = input.join(' ');
+  node.className = interpret(input).join(' ');
 }
 
 function add (node, input) {

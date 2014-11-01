@@ -1,3 +1,7 @@
+# v2.3.6 Set Interpeter
+
+- Introduced ability to pass classes as a single string to `.setClass()`
+
 # v2.3.5 Fat Trimmer
 
 - Removed dependency on `lodash.find`
