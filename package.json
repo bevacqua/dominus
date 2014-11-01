@@ -1,7 +1,7 @@
 {
   "name": "dominus",
   "description": "Lean DOM Manipulation",
-  "version": "2.3.6",
+  "version": "2.3.7",
   "homepage": "https://github.com/bevacqua/dominus",
   "author": {
     "name": "Nicolas Bevacqua",
@@ -16,6 +16,7 @@
   "main": "src/dominus.js",
   "devDependencies": {
     "browserify": "^4.1.3",
+    "contra": "^1.6.10",
     "gulp": "^3.6.2",
     "gulp-bump": "~0.1.0",
     "gulp-clean": "~0.2.3",
