@@ -1,4 +1,4 @@
-# v2.3.6 Set Interpeter
+# v2.3.7 Set Interpeter
 
 - Introduced ability to pass classes as a single string to `.setClass()`
 
