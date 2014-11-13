@@ -7,6 +7,12 @@ function hyphenToCamel (hyphens) {
   });
 }
 
+function hyphenate (text) {
+  var camel = /([a-z])([A-Z])/g;
+  return text.replace(camel, '$1-$2').toLowerCase();
+}
+
 module.exports = {
-  hyphenToCamel: hyphenToCamel
+  hyphenToCamel: hyphenToCamel,
+  hyphenate: hyphenate
 };

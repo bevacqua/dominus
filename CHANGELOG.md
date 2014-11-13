@@ -1,4 +1,4 @@
-# v2.4.2 Brothers and Sisters
+# v2.4.3 Brothers and Sisters
 
 - Introduced `.css(prop, value)` method that also allows `.css({ prop: value })`
 - Fixed issues with `prev` and `next` where they would've incorrectly return an empty set

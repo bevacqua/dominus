@@ -286,11 +286,6 @@ function display (elem, should) {
   }
 }
 
-function hyphenate (text) {
-  var camel = /([a-z])([A-Z])/g;
-  return text.replace(camel, '$1-$2').toLowerCase();
-}
-
 var numericCssProperties = {
   'column-count': true,
   'fill-opacity': true,
@@ -306,9 +301,11 @@ var numericCssProperties = {
   'zoom': true
 };
 var numeric = /^\d+$/;
+var canFloat = 'float' in document.body.style;
 
 api.getCss = function (elem, prop) {
-  var hprop = hyphenate(prop);
+  var hprop = text.hyphenate(prop);
+  var fprop = !canFloat && hprop === 'float' ? 'cssFloat' : hprop;
   var result = window.getComputedStyle(elem)[hprop];
   if (prop === 'opacity' && result === '') {
     return 1;
@@ -326,7 +323,7 @@ api.setCss = function (props) {
     return value !== null && value === value;
   }
   function expand (prop) {
-    var hprop = hyphenate(prop);
+    var hprop = text.hyphenate(prop);
     var value = props[prop];
     if (typeof value === 'number' && !numericCssProperties[hprop]) {
       value += 'px';
