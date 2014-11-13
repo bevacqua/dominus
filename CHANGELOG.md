@@ -1,3 +1,8 @@
+# v2.4.0 Brothers and Sisters
+
+- Introduced `.css(prop, value)` method that also allows `.css({ prop: value })`
+- Fixed issues with `prev` and `next` where they would've incorrectly return an empty set
+
 # v2.3.7 Set Interpeter
 
 - Introduced ability to pass classes as a single string to `.setClass()`

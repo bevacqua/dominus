@@ -64,6 +64,23 @@ Dominus.prototype.but = compareFactory(function addOne (elem) {
   return this;
 });
 
+Dominus.prototype.css = function (name, value) {
+  var props;
+  var many = name && typeof name === 'object';
+  var getter = !many && !value;
+  if (getter) {
+    return this.length ? dom.getCss(this[0], name) : null;
+  }
+  if (many) {
+    props = name;
+  } else {
+    props = {};
+    props[name] = value;
+  }
+  this.forEach(dom.setCss(props));
+  return this;
+};
+
 Dominus.prototype.on = function (types, filter, fn) {
   this.forEach(function (elem) {
     types.split(' ').forEach(function (type) {
