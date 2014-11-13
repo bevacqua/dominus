@@ -314,7 +314,7 @@ api.getCss = function (elem, prop) {
     return 1;
   }
   if (result.substr(-2) === 'px' || numeric.test(result)) {
-    return parseInt(result, 10);
+    return parseFloat(result, 10);
   }
   return result;
 };
