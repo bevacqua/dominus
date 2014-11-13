@@ -36,7 +36,7 @@ api.matches = function (elem, selector) {
 };
 
 function relatedFactory (prop) {
-  return function related (elem, selector) {console.log(elem,selector,prop);
+  return function related (elem, selector) {
     var relative = elem[prop];
     if (relative) {
       if (!selector || api.matches(relative, selector)) {
