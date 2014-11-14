@@ -279,11 +279,7 @@ api.hide = function (elem, should) {
 };
 
 function display (elem, should) {
-  if (should) {
-    elem.style.display = 'block';
-  } else {
-    elem.style.display = 'none';
-  }
+  elem.style.display = should ? 'block' : 'none';
 }
 
 var numericCssProperties = {
