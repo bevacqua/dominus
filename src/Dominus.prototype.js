@@ -143,11 +143,21 @@ Dominus.prototype.hasClass = function (value) {
 };
 
 Dominus.prototype.attr = function (name, value) {
-  var getter = arguments.length < 2;
-  var result = this.map(function (elem) {
-    return getter ? dom.attr(elem, name) : dom.attr(elem, name, value);
-  });
-  return getter ? result[0] : this;
+  var hash = name && typeof name === 'object';
+  var set = hash ? setMany : setSingle;
+  var setter = hash || arguments.length > 1;
+  if (setter) {
+    this.forEach(set);
+    return this;
+  } else {
+    return this.length ? dom.getAttr(this[0], name) : null;
+  }
+  function setMany (elem) {
+    dom.manyAttr(elem, name);
+  }
+  function setSingle (elem) {
+    dom.attr(elem, name, value);
+  }
 };
 
 function keyValue (key, value) {

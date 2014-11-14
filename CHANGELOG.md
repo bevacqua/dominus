@@ -1,3 +1,7 @@
+# v2.5.0 Attribute Master
+
+- Allows you to use `.attr(attributes)` with an object map and many attributes
+
 # v2.4.4 Brothers and Sisters
 
 - Introduced `.css(prop, value)` method that also allows `.css({ prop: value })`

@@ -124,9 +124,17 @@ If a `value` is provided then every element in the `Dominus` collection gets ass
 
 If a `value` is provided then every element in the `Dominus` collection gets assigned that input `value`, then `a` is returned for chaining. If you don't provide a `value`, you get the input value of the first node in the `Dominus` collection back. In the case of elements that can be `checked`, the native `checked` property is used instead.
 
-### `a.attr(name, value?)`
+### `a.attr(name)`
 
-If a `value` is provided then every element in the `Dominus` collection gets assigned the attribute property `value`. If a `value` isn't provided then the current attribute value is returned. If the property can be accessed via programatic API that's preferred. For instance, using `a.attr('value', 'dog')` is the same as using `a.value('dog')` for text inputs.
+The `name` attribute's value is returned, for the first element in the collection.
+
+### `a.attr(name, value)`
+
+Every element in the collection gets assigned `value` to the attribute property `name`.
+
+### `a.attr(attributes)`
+
+The `attributes` map is used to assign every property-value pair to the attributes in every element.
 
 ### `a.addClass(value)`
 

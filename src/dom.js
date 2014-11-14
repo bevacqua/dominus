@@ -159,15 +159,7 @@ api.value = function (elem, value) {
 };
 
 api.attr = function (elem, name, value) {
-  var getter = arguments.length < 3;
   var camel = text.hyphenToCamel(name);
-  if (getter) {
-    if (camel in elem) {
-      return elem[camel];
-    } else {
-      return elem.getAttribute(name, value);
-    }
-  }
   if (camel in elem) {
     elem[camel] = value;
   } else if (value === null || value === void 0) {
@@ -175,6 +167,21 @@ api.attr = function (elem, name, value) {
   } else {
     elem.setAttribute(name, value);
   }
+};
+
+api.getAttr = function (elem, name) {
+  var camel = text.hyphenToCamel(name);
+  if (camel in elem) {
+    return elem[camel];
+  } else {
+    return elem.getAttribute(name, value);
+  }
+};
+
+api.manyAttr = function (elem, attrs) {
+  Object.keys(attrs).forEach(function (attr) {
+    api.attr(elem, attr, attrs[attr]);
+  });
 };
 
 api.make = function (type) {
