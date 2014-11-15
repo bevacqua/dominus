@@ -1,4 +1,4 @@
-# v2.5.0 Attribute Master
+# v2.5.1 Attribute Master
 
 - Allows you to use `.attr(attributes)` with an object map and many attributes
 

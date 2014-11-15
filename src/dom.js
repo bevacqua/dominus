@@ -174,7 +174,7 @@ api.getAttr = function (elem, name) {
   if (camel in elem) {
     return elem[camel];
   } else {
-    return elem.getAttribute(name, value);
+    return elem.getAttribute(name);
   }
 };
 
