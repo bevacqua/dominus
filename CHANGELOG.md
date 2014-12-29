@@ -1,3 +1,7 @@
+# v3.0.0 Custom Events
+
+- Introduced custom events
+
 # v2.5.2 Zen Focus
 
 - Added `.focus` method on Dominus objects

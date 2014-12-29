@@ -2,6 +2,7 @@
 
 var dom = require('./dom');
 var core = require('./core');
+var custom = require('./custom');
 var Dominus = require('./Dominus.ctor');
 var tag = /^\s*<([a-z]+(?:-[a-z]+)?)\s*\/?>\s*$/i;
 
@@ -27,5 +28,7 @@ api.find = function (selector, context) {
 api.findOne = function (selector, context) {
   return dom.qs(context, selector);
 };
+
+api.custom = custom.register;
 
 module.exports = api;

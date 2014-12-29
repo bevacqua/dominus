@@ -3,6 +3,7 @@
 var $ = require('./public');
 var core = require('./core');
 var dom = require('./dom');
+var custom = require('./custom');
 var classes = require('./classes');
 var Dominus = require('./Dominus.ctor');
 
@@ -81,10 +82,19 @@ Dominus.prototype.css = function (name, value) {
   return this;
 };
 
+function leftClick (e) {
+  return e.which === 1 && !e.metaKey && !e.ctrlKey;
+}
+
 Dominus.prototype.on = function (types, filter, fn) {
   this.forEach(function (elem) {
     types.split(' ').forEach(function (type) {
-      dom.on(elem, type, filter, fn);
+      var handler = custom.handlers[type];
+      if (handler) {
+        dom.on(elem, handler.event, filter, handler.wrap(fn));
+      } else {
+        dom.on(elem, type, filter, fn);
+      }
     });
   });
   return this;
@@ -93,7 +103,12 @@ Dominus.prototype.on = function (types, filter, fn) {
 Dominus.prototype.off = function (types, filter, fn) {
   this.forEach(function (elem) {
     types.split(' ').forEach(function (type) {
-      dom.off(elem, type, filter, fn);
+      var handler = custom.handlers[type];
+      if (handler) {
+        dom.off(elem, handler.event, filter, handler.wrap(fn));
+      } else {
+        dom.off(elem, type, filter, fn);
+      }
     });
   });
   return this;
