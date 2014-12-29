@@ -82,11 +82,11 @@ Dominus.prototype.css = function (name, value) {
   return this;
 };
 
-function leftClick (e) {
-  return e.which === 1 && !e.metaKey && !e.ctrlKey;
-}
-
 Dominus.prototype.on = function (types, filter, fn) {
+  if (typeof fn !== 'function') {
+    fn = filter;
+    filter = null;
+  }
   this.forEach(function (elem) {
     types.split(' ').forEach(function (type) {
       var handler = custom.handlers[type];
@@ -101,6 +101,10 @@ Dominus.prototype.on = function (types, filter, fn) {
 };
 
 Dominus.prototype.off = function (types, filter, fn) {
+  if (typeof fn !== 'function') {
+    fn = filter;
+    filter = null;
+  }
   this.forEach(function (elem) {
     types.split(' ').forEach(function (type) {
       var handler = custom.handlers[type];

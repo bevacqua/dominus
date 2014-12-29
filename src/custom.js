@@ -2,25 +2,28 @@
 
 var handlers = {};
 
-function register (name, type, fn) {
-  handlers[type] = {
+function register (name, type, filter) {
+  handlers[name] = {
     event: type,
-    filter: fn,
+    filter: filter,
     wrap: wrap
   };
 
   function wrap (fn) {
-    return wrapper(type, fn);
+    return wrapper(name, fn);
   }
 }
 
-function wrapper (type, fn) {
-  var key = '__dce_' + type;
+function wrapper (name, fn) {
+  if (!fn) {
+    return fn;
+  }
+  var key = '__dce_' + name;
   if (fn[key]) {
     return fn[key];
   }
   fn[key] = function customEvent (e) {
-    var match = handlers[type].filter(e);
+    var match = handlers[name].filter(e);
     if (match) {
       return fn.apply(this, arguments);
     }

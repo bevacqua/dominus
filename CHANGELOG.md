@@ -1,4 +1,4 @@
-# v3.0.0 Custom Events
+# v3.0.1 Custom Events
 
 - Introduced custom events
 

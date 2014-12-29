@@ -110,16 +110,16 @@ function delegate (root, filter, fn) {
 }
 
 api.on = function (elem, type, filter, fn) {
-  if (fn === void 0) {
-    events.add(elem, type, filter); // filter _is_ fn
+  if (filter === null) {
+    events.add(elem, type, fn);
   } else {
     events.add(elem, type, delegate(elem, filter, fn));
   }
 };
 
 api.off = function (elem, type, filter, fn) {
-  if (fn === void 0) {
-    events.remove(elem, type, filter); // filter _is_ fn
+  if (filter === null) {
+    events.remove(elem, type, fn);
   } else {
     events.remove(elem, type, delegate(elem, filter, fn));
   }
