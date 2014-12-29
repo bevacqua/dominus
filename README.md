@@ -196,6 +196,10 @@ $('.products').on('click', '.remove', removeProduct);
 
 Turns off event listeners matching the event `type`, the `filter` selector _(if any)_, and the event handler.
 
+### `a.focus()`
+
+Invokes [`HTMLElement.focus()`][6] on the first DOM element in the collection.
+
 ### `a.clone()`
 
 Returns a deep clone of the DOM elements in the collection.
@@ -267,3 +271,4 @@ MIT
 [3]: https://github.com/bevacqua/poser
 [4]: https://github.com/jquery/sizzle
 [5]: https://raw.githubusercontent.com/bevacqua/dominus/master/resources/dominus.png
+[6]: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement.focus

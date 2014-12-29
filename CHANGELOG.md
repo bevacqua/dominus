@@ -1,3 +1,7 @@
+# v2.5.2 Zen Focus
+
+- Added `.focus` method on Dominus objects
+
 # v2.5.1 Attribute Master
 
 - Allows you to use `.attr(attributes)` with an object map and many attributes

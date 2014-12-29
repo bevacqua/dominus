@@ -189,4 +189,11 @@ Dominus.prototype.clone = function () {
   });
 };
 
+Dominus.prototype.focus = function () {
+  if (this.length) {
+    this[0].focus();
+  }
+  return this;
+};
+
 module.exports = require('./public');
