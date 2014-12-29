@@ -130,7 +130,7 @@ The `name` attribute's value is returned, for the first element in the collectio
 
 ### `a.attr(name, value)`
 
-Every element in the collection gets assigned `value` to the attribute property `name`.
+Every element in the collection gets assigned `value` to the attribute property `name`. Passing `null` or `undefined` as the `value` will remove the attribute from the DOM element entirely.
 
 ### `a.attr(attributes)`
 
