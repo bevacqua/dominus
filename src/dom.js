@@ -2,7 +2,8 @@
 
 var sektor = require('sektor');
 var Dominus = require('./Dominus.ctor');
-var core = require('./core');
+var cast = require('./cast');
+var apply = require('./apply');
 var events = require('./events');
 var text = require('./text');
 var test = require('./test');
@@ -40,7 +41,7 @@ function relatedFactory (prop) {
     var relative = elem[prop];
     if (relative) {
       if (!selector || api.matches(relative, selector)) {
-        return core.cast(relative);
+        return cast(relative);
       }
     }
     return new Dominus();
@@ -73,7 +74,7 @@ api.parents = function (elem, value) {
     }
     node = node.parentElement;
   }
-  return core.apply(nodes);
+  return apply(nodes);
 };
 
 api.children = function (elem, value) {
@@ -87,7 +88,7 @@ api.children = function (elem, value) {
       nodes.push(child);
     }
   }
-  return core.apply(nodes);
+  return apply(nodes);
 };
 
 // this method caches delegates so that .off() works seamlessly

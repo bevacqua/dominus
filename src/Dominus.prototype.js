@@ -1,7 +1,7 @@
 'use strict';
 
 var $ = require('./public');
-var core = require('./core');
+var flatten = require('./flatten');
 var dom = require('./dom');
 var custom = require('./custom');
 var classes = require('./classes');
@@ -18,7 +18,7 @@ function straight (prop, one) {
     var result = this.map(function (elem) {
       return dom[prop](elem, selector);
     });
-    var results = core.flatten(result);
+    var results = flatten(result);
     return one ? results[0] : results;
   };
 }

@@ -1,7 +1,7 @@
 'use strict';
 
 var dom = require('./dom');
-var core = require('./core');
+var cast = require('./cast');
 var custom = require('./custom');
 var Dominus = require('./Dominus.ctor');
 var tag = /^\s*<([a-z]+(?:-[a-z]+)?)\s*\/?>\s*$/i;
@@ -9,7 +9,7 @@ var tag = /^\s*<([a-z]+(?:-[a-z]+)?)\s*\/?>\s*$/i;
 function api (selector, context) {
   var notText = typeof selector !== 'string';
   if (notText && arguments.length < 2) {
-    return core.cast(selector);
+    return cast(selector);
   }
   if (notText) {
     return new Dominus();
