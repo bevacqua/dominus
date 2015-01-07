@@ -13,7 +13,7 @@ function apply (a) {
   return new Applied(a);
 }
 
-['map', 'filter', 'concat'].forEach(ensure);
+['map', 'filter', 'concat', 'slice'].forEach(ensure);
 
 function ensure (key) {
   var original = proto[key];
