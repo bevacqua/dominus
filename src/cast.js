@@ -5,6 +5,9 @@ var apply = require('./apply');
 var Dominus = require('./Dominus.ctor');
 
 function cast (a) {
+  if (a === global) {
+    return new Dominus(a);
+  }
   if (a instanceof Dominus) {
     return a;
   }
