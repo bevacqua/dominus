@@ -4,53 +4,53 @@ var addEvent = addEventEasy;
 var removeEvent = removeEventEasy;
 var hardCache = [];
 
-if (!window.addEventListener) {
+if (!global.addEventListener) {
   addEvent = addEventHard;
 }
 
-if (!window.removeEventListener) {
+if (!global.removeEventListener) {
   removeEvent = removeEventHard;
 }
 
-function addEventEasy (element, evt, fn) {
-  return element.addEventListener(evt, fn);
+function addEventEasy (el, evt, fn) {
+  return el.addEventListener(evt, fn);
 }
 
-function addEventHard (element, evt, fn) {
-  return element.attachEvent('on' + evt, wrap(element, evt, fn));
+function addEventHard (el, evt, fn) {
+  return el.attachEvent('on' + evt, wrap(el, evt, fn));
 }
 
-function removeEventEasy (element, evt, fn) {
-  return element.removeEventListener(evt, fn);
+function removeEventEasy (el, evt, fn) {
+  return el.removeEventListener(evt, fn);
 }
 
-function removeEventHard (element, evt, fn) {
-  return element.detachEvent('on' + evt, unwrap(element, evt, fn));
+function removeEventHard (el, evt, fn) {
+  return el.detachEvent('on' + evt, unwrap(el, evt, fn));
 }
 
-function wrapperFactory (element, evt, fn) {
+function wrapperFactory (el, evt, fn) {
   return function wrapper (originalEvent) {
-    var e = originalEvent || window.event;
+    var e = originalEvent || global.event;
     e.target = e.target || e.srcElement;
     e.preventDefault  = e.preventDefault  || function preventDefault () { e.returnValue = false; };
     e.stopPropagation = e.stopPropagation || function stopPropagation () { e.cancelBubble = true; };
-    fn.call(element, e);
+    fn.call(el, e);
   };
 }
 
-function wrap (element, evt, fn) {
-  var wrapper = unwrap(element, evt, fn) || wrapperFactory(element, evt, fn);
+function wrap (el, evt, fn) {
+  var wrapper = unwrap(el, evt, fn) || wrapperFactory(el, evt, fn);
   hardCache.push({
     wrapper: wrapper,
-    element: element,
+    element: el,
     evt: evt,
     fn: fn
   });
   return wrapper;
 }
 
-function unwrap (element, evt, fn) {
-  var i = find(element, evt, fn);
+function unwrap (el, evt, fn) {
+  var i = find(el, evt, fn);
   if (i) {
     var wrapper = hardCache[i].wrapper;
     hardCache.splice(i, 1); // free up a tad of memory
@@ -58,11 +58,11 @@ function unwrap (element, evt, fn) {
   }
 }
 
-function find (element, evt, fn) {
+function find (el, evt, fn) {
   var i, item;
   for (i = 0; i < hardCache.length; i++) {
     item = hardCache[i];
-    if (item.element === element && item.evt === evt && item.fn === fn) {
+    if (item.element === el && item.evt === evt && item.fn === fn) {
       return i;
     }
   }

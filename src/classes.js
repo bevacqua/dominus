@@ -2,29 +2,35 @@
 
 var trim = /^\s+|\s+$/g;
 var whitespace = /\s+/g;
+var test = require('./test');
 
 function interpret (input) {
   return typeof input === 'string' ? input.replace(trim, '').split(whitespace) : input;
 }
 
-function classes (node) {
-  return node.className.replace(trim, '').split(whitespace);
+function classes (el) {
+  if (test.isElement(el)) {
+    return el.className.replace(trim, '').split(whitespace);
+  }
+  return [];
 }
 
-function set (node, input) {
-  node.className = interpret(input).join(' ');
+function set (el, input) {
+  if (test.isElement(el)) {
+    el.className = interpret(input).join(' ');
+  }
 }
 
-function add (node, input) {
-  var current = remove(node, input);
+function add (el, input) {
+  var current = remove(el, input);
   var values = interpret(input);
   current.push.apply(current, values);
-  set(node, current);
+  set(el, current);
   return current;
 }
 
-function remove (node, input) {
-  var current = classes(node);
+function remove (el, input) {
+  var current = classes(el);
   var values = interpret(input);
   values.forEach(function (value) {
     var i = current.indexOf(value);
@@ -32,12 +38,12 @@ function remove (node, input) {
       current.splice(i, 1);
     }
   });
-  set(node, current);
+  set(el, current);
   return current;
 }
 
-function contains (node, input) {
-  var current = classes(node);
+function contains (el, input) {
+  var current = classes(el);
   var values = interpret(input);
 
   return values.every(function (value) {

@@ -23,22 +23,22 @@ function castContext (context) {
   return null;
 }
 
-api.qsa = function (elem, selector) {
+api.qsa = function (el, selector) {
   var results = new Dominus();
-  return sektor(selector, castContext(elem), results);
+  return sektor(selector, castContext(el), results);
 };
 
-api.qs = function (elem, selector) {
-  return api.qsa(elem, selector)[0];
+api.qs = function (el, selector) {
+  return api.qsa(el, selector)[0];
 };
 
-api.matches = function (elem, selector) {
-  return sektor.matchesSelector(elem, selector);
+api.matches = function (el, selector) {
+  return test.isElement(el) && sektor.matchesSelector(el, selector);
 };
 
 function relatedFactory (prop) {
-  return function related (elem, selector) {
-    var relative = elem[prop];
+  return function related (el, selector) {
+    var relative = el[prop];
     if (relative) {
       if (!selector || api.matches(relative, selector)) {
         return cast(relative);
@@ -52,43 +52,43 @@ api.prev = relatedFactory('previousElementSibling');
 api.next = relatedFactory('nextElementSibling');
 api.parent = relatedFactory('parentElement');
 
-function matches (elem, value) {
+function matches (el, value) {
   if (!value) {
     return true;
   }
   if (value instanceof Dominus) {
-    return value.indexOf(elem) !== -1;
+    return value.indexOf(el) !== -1;
   }
   if (test.isElement(value)) {
-    return elem === value;
+    return el === value;
   }
-  return api.matches(elem, value);
+  return api.matches(el, value);
 }
 
-api.parents = function (elem, value) {
-  var nodes = [];
-  var node = elem;
-  while (node.parentElement) {
-    if (matches(node.parentElement, value)) {
-      nodes.push(node.parentElement);
+api.parents = function (el, value) {
+  var elements = [];
+  var current = el;
+  while (current.parentElement) {
+    if (matches(current.parentElement, value)) {
+      elements.push(current.parentElement);
     }
-    node = node.parentElement;
+    current = current.parentElement;
   }
-  return apply(nodes);
+  return apply(elements);
 };
 
-api.children = function (elem, value) {
-  var nodes = [];
-  var children = elem.children;
+api.children = function (el, value) {
+  var elements = [];
+  var children = el.children;
   var child;
   var i;
-  for (i = 0; i < children.length; i++) {
+  for (i = 0; children && i < children.length; i++) {
     child = children[i];
     if (matches(child, value)) {
-      nodes.push(child);
+      elements.push(child);
     }
   }
-  return apply(nodes);
+  return apply(elements);
 };
 
 // this method caches delegates so that .off() works seamlessly
@@ -99,32 +99,27 @@ function delegate (root, filter, fn) {
   fn._dd = Date.now();
   delegates[fn._dd] = delegator;
   function delegator (e) {
-    var elem = e.target;
-    while (elem && elem !== root) {
-      if (api.matches(elem, filter)) {
+    var el = e.target;
+    while (el && el !== root) {
+      if (api.matches(el, filter)) {
         fn.apply(this, arguments); return;
       }
-      elem = elem.parentElement;
+      el = el.parentElement;
     }
   }
   return delegator;
 }
 
-api.on = function (elem, type, filter, fn) {
+function onoff (direction, el, type, filter, fn) {
   if (filter === null) {
-    events.add(elem, type, fn);
+    events[direction](el, type, fn);
   } else {
-    events.add(elem, type, delegate(elem, filter, fn));
+    events[direction](el, type, delegate(el, filter, fn));
   }
-};
+}
 
-api.off = function (elem, type, filter, fn) {
-  if (filter === null) {
-    events.remove(elem, type, fn);
-  } else {
-    events.remove(elem, type, delegate(elem, filter, fn));
-  }
-};
+api.on = onoff.bind(null, 'add');
+api.off = onoff.bind(null, 'remove');
 
 api.html = function (elem, html) {
   var getter = arguments.length < 2;
@@ -147,36 +142,40 @@ api.text = function (elem, text) {
   }
 };
 
-api.value = function (elem, value) {
-  var checkable = test.isCheckable(elem);
+api.value = function (el, value) {
+  var checkable = test.isCheckable(el);
   var getter = arguments.length < 2;
   if (getter) {
-    return checkable ? elem.checked : elem.value;
+    return checkable ? el.checked : el.value;
   } else if (checkable) {
-    elem.checked = value;
+    el.checked = value;
   } else {
-    elem.value = value;
+    el.value = value;
   }
 };
 
-api.attr = function (elem, name, value) {
+api.attr = function (el, name, value) {
+  if (!test.isElement(el)) {
+    return;
+  }
   var camel = text.hyphenToCamel(name);
-  if (camel in elem) {
-    elem[camel] = value;
+  if (camel in el) {
+    el[camel] = value;
   } else if (value === null || value === void 0) {
-    elem.removeAttribute(name);
+    el.removeAttribute(name);
   } else {
-    elem.setAttribute(name, value);
+    el.setAttribute(name, value);
   }
 };
 
-api.getAttr = function (elem, name) {
+api.getAttr = function (el, name) {
   var camel = text.hyphenToCamel(name);
-  if (camel in elem) {
-    return elem[camel];
-  } else {
-    return elem.getAttribute(name);
+  if (camel in el) {
+    return el[camel];
+  } else if (el.getAttribute) {
+    return el.getAttribute(name);
   }
+  return null;
 };
 
 api.manyAttr = function (elem, attrs) {
@@ -189,70 +188,77 @@ api.make = function (type) {
   return new Dominus(document.createElement(type));
 };
 
-api.clone = function (elem) {
-  return elem.cloneNode(true);
+api.clone = function (el) {
+  if (el.cloneNode) {
+    return el.cloneNode(true);
+  }
+  return el;
 };
 
-api.remove = function (elem) {
-  if (elem.parentElement) {
-    elem.parentElement.removeChild(elem);
+api.remove = function (el) {
+  if (el.parentElement) {
+    el.parentElement.removeChild(el);
   }
 };
 
-api.append = function (elem, target) {
-  if (manipulationGuard(elem, target, api.append)) {
+api.append = function (el, target) {
+  if (manipulationGuard(el, target, api.append)) {
     return;
   }
-  elem.appendChild(target);
+  if (el.appendChild) {
+    el.appendChild(target);
+  }
 };
 
-api.prepend = function (elem, target) {
-  if (manipulationGuard(elem, target, api.prepend)) {
+api.prepend = function (el, target) {
+  if (manipulationGuard(el, target, api.prepend)) {
     return;
   }
-  elem.insertBefore(target, elem.firstChild);
+  if (el.insertBefore) {
+    el.insertBefore(target, el.firstChild);
+  }
 };
 
-api.before = function (elem, target) {
-  if (manipulationGuard(elem, target, api.before)) {
+api.before = function (el, target) {
+  if (manipulationGuard(el, target, api.before)) {
     return;
   }
-  if (elem.parentElement) {
-    elem.parentElement.insertBefore(target, elem);
+  if (el.parentElement) {
+    el.parentElement.insertBefore(target, el);
   }
 };
 
-api.after = function (elem, target) {
-  if (manipulationGuard(elem, target, api.after)) {
+api.after = function (el, target) {
+  if (manipulationGuard(el, target, api.after)) {
     return;
   }
-  if (elem.parentElement) {
-    elem.parentElement.insertBefore(target, elem.nextSibling);
+  if (el.parentElement) {
+    el.parentElement.insertBefore(target, el.nextSibling);
   }
 };
 
-function manipulationGuard (elem, target, fn) {
+function manipulationGuard (el, target, fn) {
   var right = target instanceof Dominus;
-  var left = elem instanceof Dominus;
+  var left = el instanceof Dominus;
   if (left) {
-    elem.forEach(manipulateMany);
+    el.forEach(manipulateMany);
   } else if (right) {
-    manipulate(elem, true);
+    manipulate(el, true);
   }
-  return left || right;
+  return !el || !target || left || right;
 
-  function manipulate (elem, precondition) {
+  function manipulate (el, precondition) {
     if (right) {
       target.forEach(function (target, j) {
-        fn(elem, cloneUnless(target, precondition && j === 0));
+        fn(el, cloneUnless(target, precondition && j === 0));
       });
     } else {
-      fn(elem, cloneUnless(target, precondition));
+      fn(el, cloneUnless(target, precondition));
     }
   }
 
-  function manipulateMany (elem, i) {
-    manipulate(elem, i === 0);
+  function manipulateMany (el, i) {
+    manipulate(el, i === 0);
   }
 }
 
@@ -264,30 +270,33 @@ function cloneUnless (target, condition) {
 
 function flip (key) {
   var original = key.split(/[A-Z]/)[0];
-  api[key] = function (elem, target) {
-    api[original](target, elem);
+  api[key] = function (el, target) {
+    api[original](target, el);
   };
 }
 
-api.show = function (elem, should, invert) {
-  if (elem instanceof Dominus) {
-    elem.forEach(showTest);
+api.show = function (el, should, invert) {
+  if (!test.isElement(el)) {
+    return;
+  }
+  if (el instanceof Dominus) {
+    el.forEach(showTest);
   } else {
-    showTest(elem);
+    showTest(el);
   }
 
   function showTest (current) {
-    var ok = should === void 0 || should === true || typeof should === 'function' && should.call(current);
+    var ok = should === void 0 || should === true || typeof should === 'function' && should.call(null, current);
     display(current, invert ? !ok : ok);
   }
 };
 
-api.hide = function (elem, should) {
-  api.show(elem, should, true);
+api.hide = function (el, should) {
+  api.show(el, should, true);
 };
 
-function display (elem, should) {
-  elem.style.display = should ? 'block' : 'none';
+function display (el, should) {
+  el.style.display = should ? 'block' : 'none';
 }
 
 var numericCssProperties = {
@@ -307,10 +316,13 @@ var numericCssProperties = {
 var numeric = /^\d+$/;
 var canFloat = 'float' in document.body.style;
 
-api.getCss = function (elem, prop) {
+api.getCss = function (el, prop) {
+  if (!test.isElement(el)) {
+    return null;
+  }
   var hprop = text.hyphenate(prop);
   var fprop = !canFloat && hprop === 'float' ? 'cssFloat' : hprop;
-  var result = window.getComputedStyle(elem)[hprop];
+  var result = global.getComputedStyle(el)[hprop];
   if (prop === 'opacity' && result === '') {
     return 1;
   }
@@ -336,9 +348,12 @@ api.setCss = function (props) {
       name: hprop, value: value
     };
   }
-  return function (elem) {
+  return function (el) {
+    if (!test.isElement(el)) {
+      return;
+    }
     mapped.forEach(function (prop) {
-      elem.style[prop.name] = prop.value;
+      el.style[prop.name] = prop.value;
     });
   };
 };

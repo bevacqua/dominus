@@ -1,3 +1,10 @@
+# v3.1.0 Sanity Check
+
+- Fixed behavior of `Array.prototype.slice` on Dominus arrays
+- Introduced ability to interact with `Window` object in `$(window)`
+- The dynamic versions of `.show` and `.hide` now receive an element as a parameter
+- Fixed a bug where DOM manipulation events would throw native browser errors
+
 # v3.0.1 Custom Events
 
 - Introduced custom events

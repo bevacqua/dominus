@@ -1,18 +1,6 @@
 'use strict';
 
-var nodeObjects = typeof Node === 'object';
 var elementObjects = typeof HTMLElement === 'object';
-
-function isNode (o) {
-  return nodeObjects ? o instanceof Node : isNodeObject(o);
-}
-
-function isNodeObject (o) {
-  return o &&
-    typeof o === 'object' &&
-    typeof o.nodeName === 'string' &&
-    typeof o.nodeType === 'number';
-}
 
 function isElement (o) {
   return elementObjects ? o instanceof HTMLElement : isElementObject(o);
@@ -34,7 +22,6 @@ function isCheckable (elem) {
 }
 
 module.exports = {
-  isNode: isNode,
   isElement: isElement,
   isArray: isArray,
   isCheckable: isCheckable
