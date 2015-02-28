@@ -62,7 +62,7 @@ Queries the DOM for the provided selector, using [`sektor`][1]. Returns the firs
 
 ### `dominus.custom(name, type, filter)`
 
-See [Custom Events](#custom-events) below.
+See [Custom Event Filters](#custom-event-filters) below.
 
 ## Instance Methods
 
