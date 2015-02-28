@@ -1,3 +1,7 @@
+# v3.2.0 Event Emission
+
+- Added `.emit` method to fabricate and raise DOM events
+
 # v3.1.0 Sanity Check
 
 - Fixed behavior of `Array.prototype.slice` on Dominus arrays

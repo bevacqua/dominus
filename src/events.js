@@ -6,29 +6,32 @@ var hardCache = [];
 
 if (!global.addEventListener) {
   addEvent = addEventHard;
-}
-
-if (!global.removeEventListener) {
   removeEvent = removeEventHard;
 }
 
-function addEventEasy (el, evt, fn) {
-  return el.addEventListener(evt, fn);
+function addEventEasy (el, type, fn) {
+  return el.addEventListener(type, fn);
 }
 
-function addEventHard (el, evt, fn) {
-  return el.attachEvent('on' + evt, wrap(el, evt, fn));
+function addEventHard (el, type, fn) {
+  return el.attachEvent('on' + type, wrap(el, type, fn));
 }
 
-function removeEventEasy (el, evt, fn) {
-  return el.removeEventListener(evt, fn);
+function removeEventEasy (el, type, fn) {
+  return el.removeEventListener(type, fn);
 }
 
-function removeEventHard (el, evt, fn) {
-  return el.detachEvent('on' + evt, unwrap(el, evt, fn));
+function removeEventHard (el, type, fn) {
+  return el.detachEvent('on' + type, unwrap(el, type, fn));
 }
 
-function wrapperFactory (el, evt, fn) {
+function fabricateEvent (el, type) {
+  var e = document.createEvent('Event');
+  e.initEvent(type, true, true);
+  el.dispatchEvent(e);
+}
+
+function wrapperFactory (el, type, fn) {
   return function wrapper (originalEvent) {
     var e = originalEvent || global.event;
     e.target = e.target || e.srcElement;
@@ -38,19 +41,19 @@ function wrapperFactory (el, evt, fn) {
   };
 }
 
-function wrap (el, evt, fn) {
-  var wrapper = unwrap(el, evt, fn) || wrapperFactory(el, evt, fn);
+function wrap (el, type, fn) {
+  var wrapper = unwrap(el, type, fn) || wrapperFactory(el, type, fn);
   hardCache.push({
     wrapper: wrapper,
     element: el,
-    evt: evt,
+    type: type,
     fn: fn
   });
   return wrapper;
 }
 
-function unwrap (el, evt, fn) {
-  var i = find(el, evt, fn);
+function unwrap (el, type, fn) {
+  var i = find(el, type, fn);
   if (i) {
     var wrapper = hardCache[i].wrapper;
     hardCache.splice(i, 1); // free up a tad of memory
@@ -58,11 +61,11 @@ function unwrap (el, evt, fn) {
   }
 }
 
-function find (el, evt, fn) {
+function find (el, type, fn) {
   var i, item;
   for (i = 0; i < hardCache.length; i++) {
     item = hardCache[i];
-    if (item.element === el && item.evt === evt && item.fn === fn) {
+    if (item.element === el && item.type === type && item.fn === fn) {
       return i;
     }
   }
@@ -70,5 +73,6 @@ function find (el, evt, fn) {
 
 module.exports = {
   add: addEvent,
-  remove: removeEvent
+  remove: removeEvent,
+  fabricate: fabricateEvent
 };

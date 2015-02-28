@@ -200,7 +200,19 @@ dominus('.products').on('click', '.remove', removeProduct);
 
 Turns off event listeners matching the event `type`, the `filter` selector _(if any)_, and the event handler.
 
-### Custom Events
+### `a.emit(type)`
+
+Fabricates a synthetic event of type `type` and dispatches it for each element in the collection. Note that these events are even accessible outside of Dominus.
+
+```js
+var el = document.getElementById('dollars');
+el.addEventListener('dollarsigns', function () {
+  alert('$$$');
+});
+$(el).emit('dollarsigns');
+```
+
+### Custom Event Filters
 
 Dominus allows you to create custom sub-events. For example, you could have a custom click sub-event that only triggers on left clicks; or a custom key press event that only triggers when certain keys are pressed.
 
@@ -224,7 +236,11 @@ dominus.custom('left-click', 'click', function (e) {
 });
 ```
 
-Adding or removing event listeners to custom events is no different from adding or removing regular event listeners.
+Adding or removing event listeners to custom event filters is no different from adding or removing regular event listeners.
+
+```js
+$('#home').on('left-click', navigateHome);
+```
 
 ### `a.focus()`
 

@@ -110,16 +110,17 @@ function delegate (root, filter, fn) {
   return delegator;
 }
 
-function onoff (direction, el, type, filter, fn) {
+function evented (method, el, type, filter, fn) {
   if (filter === null) {
-    events[direction](el, type, fn);
+    events[method](el, type, fn);
   } else {
-    events[direction](el, type, delegate(el, filter, fn));
+    events[method](el, type, delegate(el, filter, fn));
   }
 }
 
-api.on = onoff.bind(null, 'add');
-api.off = onoff.bind(null, 'remove');
+api.on = evented.bind(null, 'add');
+api.off = evented.bind(null, 'remove');
+api.emit = evented.bind(null, 'fabricate');
 
 api.html = function (elem, html) {
   var getter = arguments.length < 2;

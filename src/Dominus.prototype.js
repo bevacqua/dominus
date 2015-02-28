@@ -82,41 +82,30 @@ Dominus.prototype.css = function (name, value) {
   return this;
 };
 
-Dominus.prototype.on = function (types, filter, fn) {
-  if (typeof fn !== 'function') {
-    fn = filter;
-    filter = null;
-  }
-  this.forEach(function (elem) {
-    types.split(' ').forEach(function (type) {
-      var handler = custom.handlers[type];
-      if (handler) {
-        dom.on(elem, handler.event, filter, handler.wrap(fn));
-      } else {
-        dom.on(elem, type, filter, fn);
-      }
+function eventer (method) {
+  return function (types, filter, fn) {
+    var typelist = types.split(' ');
+    if (typeof fn !== 'function') {
+      fn = filter;
+      filter = null;
+    }
+    this.forEach(function (elem) {
+      typelist.forEach(function (type) {
+        var handler = custom.handlers[type];
+        if (handler) {
+          dom[method](elem, handler.event, filter, handler.wrap(fn));
+        } else {
+          dom[method](elem, type, filter, fn);
+        }
+      });
     });
-  });
-  return this;
-};
+    return this;
+  };
+}
 
-Dominus.prototype.off = function (types, filter, fn) {
-  if (typeof fn !== 'function') {
-    fn = filter;
-    filter = null;
-  }
-  this.forEach(function (elem) {
-    types.split(' ').forEach(function (type) {
-      var handler = custom.handlers[type];
-      if (handler) {
-        dom.off(elem, handler.event, filter, handler.wrap(fn));
-      } else {
-        dom.off(elem, type, filter, fn);
-      }
-    });
-  });
-  return this;
-};
+Dominus.prototype.on = eventer('on');
+Dominus.prototype.off = eventer('off');
+Dominus.prototype.emit = eventer('emit');
 
 [
   ['addClass', classes.add],
