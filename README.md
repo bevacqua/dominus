@@ -2,7 +2,7 @@
 
 > Lean DOM Manipulation
 
-This isn't a drop-in replacement for jQuery, but rather a different implementation. Dominus is **jQuery minus the cruft**, with a footprint of **4.38kB** minified and gzipped, vs the **33.29kB** in jQuery. Dominus uses [`sektor`][1] as its selector engine of choice, which is a drop-in replacement for [Sizzle][4], but tens of times smaller in exchange for a more limited feature-set.
+This isn't a drop-in replacement for jQuery, but rather a different implementation. Dominus is **jQuery minus the cruft**, with a footprint of **4.43kB** minified and gzipped, vs the **33.29kB** in jQuery. Dominus uses [`sektor`][1] as its selector engine of choice, which is a drop-in replacement for [Sizzle][4], but tens of times smaller in exchange for a more limited feature-set.
 
 Just like with jQuery, Dominus exposes a rich API that's chainable to the best of its ability. The biggest difference with jQuery at this level is that the `Dominus` wrapper is a real array. These arrays have been modified to include a few other properties in their prototype, but they don't change the native DOM array. [See `poser` for more details on that one.][3] All of this means you can `.map`, `.forEach`, `.filter`, and all of that good stuff that you're used to when dealing with JavaScript collections, and at the same time you get some extra methods just like with jQuery.
 
