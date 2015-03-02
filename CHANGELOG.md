@@ -1,3 +1,7 @@
+# v3.2.2 Interdependant Polinization
+
+- Extracted `./events` into its own module, `crossvent`
+
 # v3.2.1 Proper Attribution
 
 - Fixed a bug where calling `.attr(name, null)` wouldn't remove the `name` attribute from DOM elements

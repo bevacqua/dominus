@@ -1,10 +1,10 @@
 'use strict';
 
 var sektor = require('sektor');
+var crossvent = require('crossvent');
 var Dominus = require('./Dominus.ctor');
 var cast = require('./cast');
 var apply = require('./apply');
-var events = require('./events');
 var text = require('./text');
 var test = require('./test');
 var api = module.exports = {};
@@ -112,9 +112,9 @@ function delegate (root, filter, fn) {
 
 function evented (method, el, type, filter, fn) {
   if (filter === null) {
-    events[method](el, type, fn);
+    crossvent[method](el, type, fn);
   } else {
-    events[method](el, type, delegate(el, filter, fn));
+    crossvent[method](el, type, delegate(el, filter, fn));
   }
 }
 
