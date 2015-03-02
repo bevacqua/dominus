@@ -159,11 +159,12 @@ api.attr = function (el, name, value) {
   if (!test.isElement(el)) {
     return;
   }
+  if (value === null || value === void 0) {
+    el.removeAttribute(name); return;
+  }
   var camel = text.hyphenToCamel(name);
   if (camel in el) {
     el[camel] = value;
-  } else if (value === null || value === void 0) {
-    el.removeAttribute(name);
   } else {
     el.setAttribute(name, value);
   }

@@ -1,3 +1,7 @@
+# v3.2.1 Proper Attribution
+
+- Fixed a bug where calling `.attr(name, null)` wouldn't remove the `name` attribute from DOM elements
+
 # v3.2.0 Event Emission
 
 - Added `.emit` method to fabricate and raise DOM events
