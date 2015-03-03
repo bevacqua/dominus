@@ -1,4 +1,4 @@
-# v3.2.2 Interdependant Polinization
+# v3.2.3 Interdependant Polinization
 
 - Extracted `./events` into its own module, `crossvent`
 
