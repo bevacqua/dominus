@@ -1,3 +1,7 @@
+# v.3.2.4 Cross Polinize
+
+- Updated `crossvent` to `1.3.1`
+
 # v3.2.3 Interdependant Polinization
 
 - Extracted `./events` into its own module, `crossvent`
