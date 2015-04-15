@@ -118,6 +118,16 @@ function evented (method, el, type, filter, fn) {
   }
 }
 
+function once (el, type, filter, fn) {
+  var things = [el, type, filter, disposable];
+  api.on.apply(api, things);
+  function disposable () {
+    api.off.apply(api, things);
+    return fn.apply(this, arguments);
+  }
+}
+
+api.once = once;
 api.on = evented.bind(null, 'add');
 api.off = evented.bind(null, 'remove');
 api.emit = evented.bind(null, 'fabricate');

@@ -1,3 +1,7 @@
+# v.3.3.0 North Pole
+
+- Added `.once` method to bind disposable event listeners
+
 # v.3.2.4 Cross Polinize
 
 - Updated `crossvent` to `1.3.1`

@@ -103,6 +103,7 @@ function eventer (method) {
   };
 }
 
+Dominus.prototype.once = eventer('once');
 Dominus.prototype.on = eventer('on');
 Dominus.prototype.off = eventer('off');
 Dominus.prototype.emit = eventer('emit');

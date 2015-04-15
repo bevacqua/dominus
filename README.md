@@ -196,6 +196,10 @@ The `filter?` argument is optional, and you can use it to provide a selector tha
 dominus('.products').on('click', '.remove', removeProduct);
 ```
 
+### `a.once(type, filter?, fn)`
+
+Meant for when you want to listen for an event only once. This method is identical to `a.on(type, filter?, fn)`, except the event listener will be removed right before your `fn` callback is executed.
+
 ### `a.off(type, filter?, fn)`
 
 Turns off event listeners matching the event `type`, the `filter` selector _(if any)_, and the event handler.
