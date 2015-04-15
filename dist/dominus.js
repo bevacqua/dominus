@@ -1,6 +1,6 @@
 /**
  * dominus - Lean DOM Manipulation
- * @version v3.2.5
+ * @version v3.3.0
  * @link https://github.com/bevacqua/dominus
  * @license MIT
  */
