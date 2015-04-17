@@ -1,4 +1,8 @@
-# v.3.3.0 North Pole
+# v4.0.0 Table of Contents
+
+- Changed `$('div').i(index)` so that if the index is out of bounds the returned Dominus collection is empty rather than have an `undefined` element in it
+
+# v3.3.0 North Pole
 
 - Added `.once` method to bind disposable event listeners
 

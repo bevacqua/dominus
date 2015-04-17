@@ -310,7 +310,7 @@ This means that you can use `.but` with selectors, a DOM element, an array of DO
 
 ### `a.i(index)`
 
-Returns the element at index `index`, wrapped in a Dominus object.
+Returns the element at index `index`, wrapped in a Dominus object. If the `index` is out of bounds then an empty Dominus collection will be returned.
 
 # License
 

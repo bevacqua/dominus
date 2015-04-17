@@ -40,7 +40,7 @@ Dominus.prototype.is = function (selector) {
 };
 
 Dominus.prototype.i = function (index) {
-  return new Dominus(this[index]);
+  return this[index] ? new Dominus(this[index]) : new Dominus();
 };
 
 function compareFactory (fn) {
