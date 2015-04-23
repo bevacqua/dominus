@@ -174,14 +174,6 @@ Example:
 dominus('body').css({ color: 'blue', width: 600 });
 ```
 
-### `a.show(shown)`
-
-Sets `display: block` on the element if `shown` is either `undefined`, `true`, or a `function(el)` that will be invoked for each element in `a`. If it's a function then each elemnt will be shown or hidden according to the result of that function. The function is passed no arguments and `this` is assigned to each element.
-
-### `a.hide(hidden)`
-
-Sets `display: none` on the element if `hidden` is either `undefined`, `true`, or a `function(el)` that will be invoked for each element in `a`. If it's a function then each elemnt will be shown or hidden according to the result of that function. The function is passed no arguments and `this` is assigned to each element.
-
 _You can physically alter the DOM, using the methods listed in the next category._
 
 ## DOM Manipulation

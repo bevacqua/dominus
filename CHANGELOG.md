@@ -1,3 +1,7 @@
+# v5.0.0 Hide and Seek
+
+- Removed `.show` and `.hide` methods
+
 # v4.0.0 Table of Contents
 
 - Changed `$('div').i(index)` so that if the index is out of bounds the returned Dominus collection is empty rather than have an `undefined` element in it

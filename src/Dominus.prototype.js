@@ -126,21 +126,19 @@ function mapMethods (data) {
 }
 
 [
-  ['append', dom.append],
-  ['appendTo', dom.appendTo],
-  ['prepend', dom.prepend],
-  ['prependTo', dom.prependTo],
-  ['before', dom.before],
-  ['beforeOf', dom.beforeOf],
-  ['after', dom.after],
-  ['afterOf', dom.afterOf],
-  ['show', dom.show],
-  ['hide', dom.hide]
+  'append',
+  'appendTo',
+  'prepend',
+  'prependTo',
+  'before',
+  'beforeOf',
+  'after',
+  'afterOf'
 ].forEach(mapManipulation);
 
-function mapManipulation (data) {
-  Dominus.prototype[data[0]] = function (value) {
-    data[1](this, value);
+function mapManipulation (method) {
+  Dominus.prototype[method] = function (value) {
+    dom[method](this, value);
     return this;
   };
 }

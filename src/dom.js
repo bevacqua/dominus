@@ -287,30 +287,6 @@ function flip (key) {
   };
 }
 
-api.show = function (el, should, invert) {
-  if (!test.isElement(el)) {
-    return;
-  }
-  if (el instanceof Dominus) {
-    el.forEach(showTest);
-  } else {
-    showTest(el);
-  }
-
-  function showTest (current) {
-    var ok = should === void 0 || should === true || typeof should === 'function' && should.call(null, current);
-    display(current, invert ? !ok : ok);
-  }
-};
-
-api.hide = function (el, should) {
-  api.show(el, should, true);
-};
-
-function display (el, should) {
-  el.style.display = should ? 'block' : 'none';
-}
-
 var numericCssProperties = {
   'column-count': true,
   'fill-opacity': true,
