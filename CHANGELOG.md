@@ -1,3 +1,7 @@
+# v5.0.1 Cross Breed
+
+- Updated `crossvent` to `1.4.0`
+
 # v5.0.0 Hide and Seek
 
 - Removed `.show` and `.hide` methods
