@@ -1,6 +1,6 @@
-# v5.0.1 Cross Breed
+# v5.0.2 Cross Breed
 
-- Updated `crossvent` to `1.4.0`
+- Updated `crossvent` to `1.5.0`
 
 # v5.0.0 Hide and Seek
 

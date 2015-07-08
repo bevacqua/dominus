@@ -32,7 +32,7 @@
     "vinyl-source-stream": "^0.1.1"
   },
   "dependencies": {
-    "crossvent": "1.4.0",
+    "crossvent": "1.5.0",
     "poser": "^1.2.0",
     "sektor": "^1.1.1"
   }
