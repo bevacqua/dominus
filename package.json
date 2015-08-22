@@ -1,7 +1,7 @@
 {
   "name": "dominus",
   "description": "Lean DOM Manipulation",
-  "version": "5.0.3",
+  "version": "5.0.4",
   "homepage": "https://github.com/bevacqua/dominus",
   "author": {
     "email": "ng@bevacqua.io",
