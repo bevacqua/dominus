@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = function () { return []; }
+module.exports = function nullOp () { return []; };
