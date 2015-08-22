@@ -13,7 +13,8 @@
     "type": "git",
     "url": "git://github.com/bevacqua/dominus.git"
   },
-  "main": "src/dominus.js",
+  "main": "src/null.js",
+  "browser": "src/dominus.js",
   "scripts": {
     "build": "jshint . && browserify -s dominus -do dist/dominus.js src/dominus.js && uglifyjs -m -c -o dist/dominus.min.js dist/dominus.js",
     "deploy": "npm run build && npm run deployment",
