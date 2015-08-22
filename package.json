@@ -15,25 +15,25 @@
   },
   "main": "src/dominus.js",
   "devDependencies": {
-    "browserify": "^4.1.3",
-    "contra": "^1.6.10",
-    "gulp": "^3.6.2",
-    "gulp-bump": "~0.1.0",
-    "gulp-clean": "~0.2.3",
-    "gulp-git": "~0.2.0",
-    "gulp-header": "^1.0.2",
-    "gulp-rename": "~0.2.2",
-    "gulp-size": "~0.1.1",
+    "browserify": "11.0.1",
+    "contra": "1.6.10",
+    "gulp": "3.6.2",
+    "gulp-bump": "0.1.0",
+    "gulp-clean": "0.2.3",
+    "gulp-git": "0.2.0",
+    "gulp-header": "1.0.2",
+    "gulp-rename": "0.2.2",
+    "gulp-size": "0.1.1",
     "gulp-streamify": "0.0.5",
-    "gulp-uglify": "~0.1.0",
-    "gzip-size": "^1.0.0",
-    "jquery": "^1.11.1",
-    "pretty-bytes": "^1.0.1",
-    "vinyl-source-stream": "^0.1.1"
+    "gulp-uglify": "0.1.0",
+    "gzip-size": "1.0.0",
+    "jquery": "1.11.1",
+    "pretty-bytes": "1.0.1",
+    "vinyl-source-stream": "0.1.1"
   },
   "dependencies": {
     "crossvent": "1.5.0",
-    "poser": "^1.2.0",
-    "sektor": "^1.1.1"
+    "poser": "1.2.0",
+    "sektor": "1.1.3"
   }
 }

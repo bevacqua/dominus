@@ -1,3 +1,7 @@
+# v5.0.3 Cross Breed
+
+- Updated `sektor` to `1.1.3`
+
 # v5.0.2 Cross Breed
 
 - Updated `crossvent` to `1.5.0`
