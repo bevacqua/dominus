@@ -26,8 +26,8 @@
     "uglify-js": "2.4.24"
   },
   "dependencies": {
-    "crossvent": "1.5.1",
+    "crossvent": "1.5.4",
     "poser": "1.2.0",
-    "sektor": "1.1.3"
+    "sektor": "1.1.4"
   }
 }
