@@ -290,13 +290,13 @@ Besides the fact that `Dominus` is an [out-of-context `Array` object][3], meanin
 
 ### `a.and(...)`
 
-Adds the result of calling [`dominus()`](#dominus-1) with the arguments you provided to the current collection.
+Returns a copy of `a`, adding the result of calling [`dominus()`](#dominus-1) with the arguments you provided to the current collection.
 
 This means that you can use `.and` with selectors, a DOM element, an array of DOM elements, or another Dominus collection.
 
 ### `a.but(...)`
 
-Removes the result of calling [`dominus()`](#dominus-1) with the arguments you provided from the current collection.
+Returns a copy of `a`, removing the result of calling [`dominus()`](#dominus-1) with the arguments you provided from the current collection.
 
 This means that you can use `.but` with selectors, a DOM element, an array of DOM elements, or another Dominus collection.
 

@@ -3,6 +3,7 @@
 var $ = require('./public');
 var flatten = require('./flatten');
 var dom = require('./dom');
+var apply = require('./apply');
 var custom = require('./custom');
 var classes = require('./classes');
 var Dominus = require('./Dominus.ctor');
@@ -45,8 +46,9 @@ Dominus.prototype.i = function (index) {
 
 function compareFactory (fn) {
   return function compare () {
-    $.apply(null, arguments).forEach(fn, this);
-    return this;
+    var copy = apply(this);
+    $.apply(null, arguments).forEach(fn, copy);
+    return copy;
   };
 }
 

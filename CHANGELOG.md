@@ -1,3 +1,7 @@
+# v6.0.0 Ampersbutt
+
+- `.but` and `.and` now return copies rather than modifying the original object
+
 # v5.0.6 Cross Breed
 
 - Updated `crossvent` to `1.5.4`
