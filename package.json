@@ -28,6 +28,6 @@
   "dependencies": {
     "crossvent": "1.5.4",
     "poser": "1.2.0",
-    "sektor": "1.1.4"
+    "sektor": "1.1.5"
   }
 }
